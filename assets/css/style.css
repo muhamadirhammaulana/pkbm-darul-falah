@@ -1,0 +1,53 @@
+#custom-green {
+	background-color: #15BB59 !important;
+	color: #FFFFFF !important;
+}
+
+#custom-green2 {
+	background-color: #4BDE3E !important;
+	color: #FFFFFF;
+}
+
+#custom-dropdown-item {
+	color: #FFFFFF;
+}
+
+#custom-dropdown-item:hover {
+	background-color: #15BB59 !important;
+	color: #FFFFFF;
+}
+
+.custom-dropdown-item-active {
+	background-color: #15BB59 !important;
+	color: #FFFFFF;
+}
+
+#img-border {
+    padding: 1rem;
+    border: solid #dee2e6;
+    border-width: 1px;
+}
+
+.navbar-nav>li {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.iframe-container {
+	position: relative;
+	width: 100%;
+	padding-bottom: 56.25%;
+}
+
+.iframe-container>* {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+    height: 100%;
+	width: 100%;
+}
