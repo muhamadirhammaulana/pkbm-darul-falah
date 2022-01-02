@@ -119,7 +119,11 @@
             <?php }
             if ($this->uri->segment(2) == "berita") { ?>
                 $('ul.nav-sidebar a#berita').addClass('active');
-            <?php } ?>
+            <?php } 
+            if ($this->uri->segment(2) == "data-admin") { ?>
+                $('ul.nav-sidebar a#data-admin').addClass('active');
+            <?php }
+            ?>
         </script>
         <script>
             $(document).ready(function() {
@@ -268,6 +272,14 @@
 
                 if(isset($_SESSION['password_gagal'])) {
                     unset($_SESSION['password_gagal']);
+                }
+
+                if($this->session->flashdata('register_gagal')) { ?>
+                    toastr.error("<?php echo $this->session->flashdata('register_gagal'); ?>");
+                <?php }
+
+                if(isset($_SESSION['register_gagal'])) {
+                    unset($_SESSION['register_gagal']);
                 }
                 ?> 
             });

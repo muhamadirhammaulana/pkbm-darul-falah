@@ -67,6 +67,9 @@ $route['informasi-berita/(:num)'] = 'home/informasi_berita/$1';
 $route['informasi-berita/(:any)'] = 'home/detail_informasi_berita/$1';
 $route['legalitas'] = 'home/legalitas';
 
+$route['admin/data-admin'] = 'admin/data_admin';
+$route['admin/data-admin/tambah-admin'] = 'admin/add_admin';
+$route['admin/data-admin/edit-admin/(:any)'] = 'admin/edit_admin/$1';
 $route['admin/profil-pengguna/(:any)'] = 'admin/user/$1';
 $route['admin/visi-misi-tujuan'] = 'admin/visi_misi';
 $route['admin/pembelajaran/tambah-program'] = 'admin/addprogram';

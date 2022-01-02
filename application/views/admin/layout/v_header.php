@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>PKBM Darul Falah | Admin</title>
 
-        <link rel="icon" href="<?= base_url('assets/img/default-icon.jpg') ?>">
+        <link rel="icon" href="<?=base_url('assets/image/logo/'.$profil->logo)?>">
 
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">

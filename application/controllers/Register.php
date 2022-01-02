@@ -9,6 +9,7 @@ class Register extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('m_register');
+        $this->load->model('m_home');
         $this->load->model('m_profil');
         
     }
@@ -31,6 +32,7 @@ class Register extends CI_Controller {
 
                 $data = array(
                     'profil' => $this->m_profil->detail(),
+                    'medsos' => $this->m_home->medsos(),
                     'error' => $this->upload->display_errors(),
                 );
                 $this->load->view('page-login', $data, FALSE);
@@ -80,6 +82,7 @@ class Register extends CI_Controller {
 
         $data = array(
             'profil' => $this->m_profil->detail(),
+            'medsos' => $this->m_home->medsos(),
         );
         $this->load->view('page-login', $data, FALSE);
     }

@@ -37,7 +37,7 @@ class User_login
 
             } else
             {
-                $this->ci->session->set_flashdata('pesan', 'Password tidak cocok !');
+                $this->ci->session->set_flashdata('pesan', 'Password salah !');
                 redirect('login');
             }
             

@@ -23,6 +23,15 @@
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-header">PENGGUNA</li>
+                            <li class="nav-item">
+                                <a href="<?=base_url('admin/data-admin')?>" class="nav-link" id="data-admin">
+                                    <i class="nav-icon fas fa-users-cog"></i>
+                                    <p>
+                                        Admin
+                                    </p>
+                                </a>
+                            </li>
                             <li class="nav-header">PROFIL</li>
                             <li class="nav-item">
                                 <a href="<?=base_url('admin/akreditasi')?>" class="nav-link">

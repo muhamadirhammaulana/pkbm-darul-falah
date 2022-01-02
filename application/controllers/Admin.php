@@ -8,6 +8,7 @@ class Admin extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('m_admin');
         $this->load->model('m_akreditasi');
         $this->load->model('m_visimisi');
         $this->load->model('m_profil');
@@ -77,7 +78,7 @@ class Admin extends CI_Controller {
 
             if($new_password != $confirm_password) {
                 $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
-                redirect('admin/user/'.$id_user);
+                
 
             } else {
                 $data = array(
@@ -134,6 +135,319 @@ class Admin extends CI_Controller {
     }
 
     /* End User */
+
+    /* Data Admin */
+
+    public function data_admin()
+    {
+        $id_user = $this->session->userdata('id_user');
+        $data = array(
+            'user' => $this->m_user->detail($id_user),
+            'profil' => $this->m_profil->detail(),
+            'data_admin' => $this->m_admin->lists(),
+            'isi' => 'admin/admin/v_dataadmin'
+        );
+        $this->load->view('admin/layout/v_wrapper', $data, FALSE);
+    }
+
+    public function add_admin()
+    {
+        $this->form_validation->set_rules('nama_user', 'Nama User', 'required');
+        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('konfirmasi_password', 'Konfirmasi Password', 'required');
+
+        if ($this->form_validation->run() == TRUE) {
+            $config['upload_path'] = './assets/image/foto_user/';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['max_size'] = 2000;
+            $this->upload->initialize($config);
+
+            if (!$this->upload->do_upload('foto_user')) {
+                $id_user = $this->session->userdata('id_user');
+                $data = array(
+                    'user' => $this->m_user->detail($id_user),
+                    'profil' => $this->m_profil->detail(),
+                    'error' => $this->upload->display_errors(),
+                    'isi' => 'admin/admin/v_addadmin'
+                );
+                $this->load->view('admin/layout/v_wrapper', $data, FALSE);
+                
+            }
+            else {
+                $upload_data = array('uploads' => $this->upload->data());
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = './assets/image/foto_user/'.$upload_data['uploads']['file_name'];
+                $this->load->library('image_lib', $config);
+
+                $new_password=$this->input->post('password');
+                $confirm_password=$this->input->post('konfirmasi_password');
+
+                $data = array(
+                    'nama_user' => $this->input->post('nama_user'),
+                    'username' => $this->input->post('username'),
+                    'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                    'level' => '1',
+                    'foto_user' => $upload_data['uploads']['file_name']
+                );
+
+                if($this->m_admin->check_user_exist($data['username'])) {
+                    $this->session->set_flashdata('register_gagal', 'Username sudah ada !');
+                    redirect('admin/data-admin/tambah-admin');
+                } else {
+                    if($new_password != $confirm_password) {
+                        $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                        redirect('admin/data-admin/tambah-admin');
+                    } else {
+                        $this->m_admin->add($data);
+                        $this->session->set_flashdata('pesan', 'Akun berhasil Ditambahkan !');
+                        redirect('admin/data-admin');
+                    }
+                }
+            }
+
+            $new_password=$this->input->post('password');
+            $confirm_password=$this->input->post('konfirmasi_password');
+            
+            $data = array(
+                'nama_user' => $this->input->post('nama_user'),
+                'username' => $this->input->post('username'),
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                'level' => '1'
+            );
+
+            if($this->m_admin->check_user_exist($data['username'])) {
+                $this->session->set_flashdata('register_gagal', 'Username sudah ada !');
+                redirect('admin/data-admin/tambah-admin');
+            } else {
+                if($new_password != $confirm_password) {
+                    $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                    redirect('admin/data-admin/tambah-admin');
+                } else {
+                    $this->m_admin->add($data);
+                    $this->session->set_flashdata('pesan', 'Akun berhasil Ditambahkan !');
+                    redirect('admin/data-admin');
+                }
+            }
+        }
+
+        $id_user = $this->session->userdata('id_user');
+        $data = array(
+            'user' => $this->m_user->detail($id_user),
+            'profil' => $this->m_profil->detail(),
+            'isi' => 'admin/admin/v_addadmin'
+        );
+        $this->load->view('admin/layout/v_wrapper', $data, FALSE);
+    }
+
+    public function edit_admin($id_user)
+    {
+        $this->form_validation->set_rules('nama_user', 'Nama User', 'required');
+        $this->form_validation->set_rules('username', 'Username', 'required');
+
+        if ($this->form_validation->run() == TRUE) {
+            $config['upload_path'] = './assets/image/foto_user/';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['max_size'] = 2000;
+            $this->upload->initialize($config);
+            
+            if (!$this->upload->do_upload('foto_user')) {
+                $data = array(
+                    'user' => $this->m_user->detail($id_user),
+                    'profil' => $this->m_profil->detail(),
+                    'error' => $this->upload->display_errors(),
+                    'admin' => $this->m_admin->detail($id_user),
+                    'isi' => 'admin/admin/v_editadmin'
+                );
+                $this->load->view('admin/layout/v_wrapper', $data, FALSE); 
+            }
+            else {
+                $upload_data = array('uploads' => $this->upload->data());
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = './assets/image/foto_user/'.$upload_data['uploads']['file_name'];
+                $this->load->library('image_lib', $config);
+
+                // Menghapus file foto lama
+                $user=$this->m_admin->detail($id_user);
+                if ($user->foto_user != "") {
+                    unlink('./assets/image/foto_user/'.$program->foto_user);
+                }
+                // End menghapus file foto lama
+
+                $username=$this->input->post('username');
+                $new_password=$this->input->post('password');
+                $confirm_password=$this->input->post('konfirmasi_password');
+                $admin=$this->m_admin->detail($id_user);
+                $curr_username=$admin->username;
+
+                if($curr_username != $username) {
+                    if ($this->m_admin->check_user_exist($username)) {
+                        $this->session->set_flashdata('register_gagal', 'Username sudah ada !');
+                        redirect('admin/data-admin/edit-admin/'.$id_user);
+                    } else {
+                        if ($new_password == "" && $confirm_password == "") {
+                            $data = array(
+                                'id_user' => $id_user,
+                                'nama_user' => $this->input->post('nama_user'),
+                                'username' => $this->input->post('username'),
+                                'level' => '1',
+                                'foto_user' => $upload_data['uploads']['file_name']
+                            );
+                            $this->m_admin->edit($data);
+                            $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
+                            redirect('admin/data-admin');
+                        } else {
+                            $data = array(
+                                'id_user' => $id_user,
+                                'nama_user' => $this->input->post('nama_user'),
+                                'username' => $this->input->post('username'),
+                                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                                'level' => '1',
+                                'foto_user' => $upload_data['uploads']['file_name']
+                            );
+                            if($new_password != $confirm_password) {
+                                $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                                redirect('admin/data-admin/edit-admin/'.$id_user);
+                            } else {
+                                $this->m_admin->edit($data);
+                                $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
+                                redirect('admin/data-admin');
+                            }
+                        }
+                    }
+                    
+                } else {
+                    if ($new_password == "" && $confirm_password == "") {
+                        $data = array(
+                            'id_user' => $id_user,
+                            'nama_user' => $this->input->post('nama_user'),
+                            'username' => $this->input->post('username'),
+                            'level' => '1',
+                            'foto_user' => $upload_data['uploads']['file_name']
+                        );
+                        $this->m_admin->edit($data);
+                        $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
+                        redirect('admin/data-admin');
+                    } else {
+                        $data = array(
+                            'id_user' => $id_user,
+                            'nama_user' => $this->input->post('nama_user'),
+                            'username' => $this->input->post('username'),
+                            'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                            'level' => '1',
+                            'foto_user' => $upload_data['uploads']['file_name']
+                        );
+                        if($new_password != $confirm_password) {
+                            $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                            redirect('admin/data-admin/edit-admin/'.$id_user);
+                        } else {
+                            $this->m_admin->edit($data);
+                            $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
+                            redirect('admin/data-admin');
+                        }
+                    }
+                }
+
+            }
+
+            $username=$this->input->post('username');
+            $new_password=$this->input->post('password');
+            $confirm_password=$this->input->post('konfirmasi_password');
+            $admin=$this->m_admin->detail($id_user);
+            $curr_username=$admin->username;
+
+            if($curr_username != $username) {
+                if ($this->m_admin->check_user_exist($username)) {
+                    $this->session->set_flashdata('register_gagal', 'Username sudah ada !');
+                    redirect('admin/data-admin/edit-admin/'.$id_user);
+                } else {
+                    if ($new_password == "" && $confirm_password == "") {
+                        $data = array(
+                            'id_user' => $id_user,
+                            'nama_user' => $this->input->post('nama_user'),
+                            'username' => $this->input->post('username'),
+                            'level' => '1'
+                        );
+                        $this->m_admin->edit($data);
+                        $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
+                        redirect('admin/data-admin');
+                    } else {
+                        $data = array(
+                            'id_user' => $id_user,
+                            'nama_user' => $this->input->post('nama_user'),
+                            'username' => $this->input->post('username'),
+                            'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                            'level' => '1'
+                        );
+                        if($new_password != $confirm_password) {
+                            $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                            redirect('admin/data-admin/edit-admin/'.$id_user);
+                        } else {
+                            $this->m_admin->edit($data);
+                            $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
+                            redirect('admin/data-admin');
+                        }
+                    }
+                }
+                
+            } else {
+                if ($new_password == "" && $confirm_password == "") {
+                    $data = array(
+                        'id_user' => $id_user,
+                        'nama_user' => $this->input->post('nama_user'),
+                        'username' => $this->input->post('username'),
+                        'level' => '1'
+                    );
+                    $this->m_admin->edit($data);
+                    $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
+                    redirect('admin/data-admin');
+                } else {
+                    $data = array(
+                        'id_user' => $id_user,
+                        'nama_user' => $this->input->post('nama_user'),
+                        'username' => $this->input->post('username'),
+                        'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                        'level' => '1'
+                    );
+                    if($new_password != $confirm_password) {
+                        $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                        redirect('admin/data-admin/edit-admin/'.$id_user);
+                    } else {
+                        $this->m_admin->edit($data);
+                        $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
+                        redirect('admin/data-admin');
+                    }
+                }
+            }
+        }
+
+        $data = array(
+            'user' => $this->m_user->detail($id_user),
+            'profil' => $this->m_profil->detail(),
+            'admin' => $this->m_admin->detail($id_user),
+            'isi' => 'admin/admin/v_editadmin'
+        );
+        $this->load->view('admin/layout/v_wrapper', $data, FALSE);
+    }
+
+    public function delete_admin($id_user) {
+        // Menghapus file foto lama
+        $user=$this->m_admin->detail($id_user);
+        if ($user->foto_user != "") {
+            unlink('./assets/image/foto_user/'.$user->foto_user);
+        }
+        // End menghapus file foto lama
+
+        $data = array(
+            'id_user' => $id_user
+        );
+        $this->m_admin->delete($data);
+        $this->session->set_flashdata('pesan', 'Admin berhasil dihapus !');
+                
+        redirect('admin/data-admin');
+    }
+
+    /* End Data Admin */
 
     /* Akreditasi */
 
