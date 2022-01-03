@@ -61,10 +61,10 @@
                                                         <input type="text" class="form-control" value="<?=$program->nama_program?>" name="nama_program" id="namaprogram" placeholder="Masukkan Nama Program" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan Nama Program')" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="exampleInputFile">Ganti Foto Program</label>
+                                                        <label for="exampleInputFile">Ganti Foto Program <small class="text-muted">(format: jpg/jpeg/png, ukuran maks: 2 MB)</small></label>
                                                         <div class="input-group">
                                                         <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="fotoprogram" name="foto_program">
+                                                            <input type="file" class="custom-file-input" id="fotoprogram" name="foto_program" accept=".jpg,.jpeg,.png">
                                                             <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
                                                         </div>
                                                         </div>

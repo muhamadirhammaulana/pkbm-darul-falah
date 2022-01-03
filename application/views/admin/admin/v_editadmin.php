@@ -67,10 +67,10 @@
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label for="exampleInputFile">Foto</label>
+                                                                <label for="exampleInputFile">Ganti Foto <small class="text-muted">(format: jpg/jpeg/png, ukuran maks: 2 MB)</small></label>
                                                                 <div class="input-group">
                                                                     <div class="custom-file">
-                                                                        <input type="file" class="custom-file-input" name="foto_user" id="fotouser">
+                                                                        <input type="file" class="custom-file-input" name="foto_user" id="fotouser" accept=".jpg,.jpeg,.png">
                                                                         <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
                                                                     </div>
                                                                 </div>
@@ -88,7 +88,7 @@
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label for="exampleInputEmail1">Ganti Password</label>
+                                                                <label for="exampleInputEmail1">Ganti Password <small class="text-muted">(min. 8 karakter)</small></label>
                                                                 <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan Password Baru" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan Password Baru')">
                                                             </div>
                                                         </div>

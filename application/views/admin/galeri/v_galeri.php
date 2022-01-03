@@ -110,8 +110,8 @@
                                 $warning = "";
                             }
                             ?>
-                            <p>Hapus Galeri "<strong><?=$value->nama_galeri?></strong>"?</p>
-                            <p class="font-weight-light font-italic text-muted"><?=$warning?></p>
+                            <p>Hapus Galeri "<strong><?=$value->nama_galeri?></strong>"?<br><small class="text-muted"><?=$warning?></small></p>
+                            
                             <button type="submit" class="btn btn-danger btn-flat btn-sm">Hapus</button>
                             <button type="button" class="btn btn-default btn-flat btn-sm" data-dismiss="modal">Batal</button>
                             <?php echo form_close(); ?>

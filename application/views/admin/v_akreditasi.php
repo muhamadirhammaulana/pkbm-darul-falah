@@ -40,10 +40,10 @@
                                             </div>
                                             <div class="col-md-6 editor-akreditasi1" hidden>
                                                 <?php echo form_open_multipart('admin/foto1_akreditasi'); ?>
-                                                <label for="exampleInputFile">Ganti Foto 1</label>
+                                                <label for="exampleInputFile">Ganti Foto 1<br><small class="text-muted">(format: jpg/jpeg/png, ukuran maks: 2 MB)</small></label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input rounded-0" id="exampleInputFile" name="foto1_akreditasi" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan File Foto')" required>
+                                                        <input type="file" class="custom-file-input rounded-0" id="exampleInputFile" name="foto1_akreditasi" accept=".jpg,.jpeg,.png" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan File Foto')" required>
                                                         <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
                                                     </div>
                                                 </div>
@@ -73,10 +73,10 @@
                                             </div>
                                             <div class="col-md-6 editor-akreditasi2" hidden>
                                                 <?php echo form_open_multipart('admin/foto2_akreditasi'); ?>
-                                                <label for="exampleInputFile">Ganti Foto 2</label>
+                                                <label for="exampleInputFile">Ganti Foto 2<br><small class="text-muted">(format: jpg/jpeg/png, ukuran maks: 2 MB)</small></label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input rounded-0" id="exampleInputFile" name="foto2_akreditasi" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan File Foto')" required>
+                                                        <input type="file" class="custom-file-input rounded-0" id="exampleInputFile" name="foto2_akreditasi" accept=".jpg,.jpeg,.png" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan File Foto')" required>
                                                         <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
                                                     </div>
                                                 </div>

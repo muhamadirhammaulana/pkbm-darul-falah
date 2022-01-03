@@ -44,10 +44,10 @@
                                                 <div class="card card-light rounded-0">
                                                     <div class="card-body">
                                                         <div class="form-group">
-                                                            <label for="exampleInputFile">Tambah Foto</label>
+                                                            <label for="exampleInputFile">Tambah Foto <small class="text-muted">(format: jpg/jpeg/png, ukuran maks: 2 MB)</small></label>
                                                             <div class="input-group">
                                                                 <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="foto" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan File Foto')" required>
+                                                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="foto" accept=".jpg,.jpeg,.png" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan File Foto')" required>
                                                                     <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
                                                                 </div>
                                                             </div>
@@ -70,10 +70,10 @@
                                                 <div class="card card-light rounded-0">
                                                     <div class="card-body">
                                                         <div class="form-group">
-                                                            <label for="exampleInputFile">Tambah Video</label>
+                                                            <label for="exampleInputFile">Tambah Video <small class="text-muted">(format: mp4/mkv/3gp/avi/mov, ukuran maks: 20 MB)</small></label>
                                                             <div class="input-group">
                                                                 <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="video" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan File Video')" required>
+                                                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="video" accept=".mp4,.mkv,.3gp,.avi,.mov" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan File Video')" required>
                                                                     <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
                                                                 </div>
                                                             </div>

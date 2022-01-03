@@ -76,19 +76,23 @@ class Admin extends CI_Controller {
             $new_password=$this->input->post('password_baru');
             $confirm_password=$this->input->post('konfirmasi_password_baru');
 
-            if($new_password != $confirm_password) {
-                $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
-                
-
-            } else {
-                $data = array(
-                    'id_user' => $id_user,
-                    'password' => password_hash($this->input->post('password_baru'), PASSWORD_DEFAULT),
-                );
-                $this->m_user->save($data);
-                $this->session->set_flashdata('pesan', 'Password berhasil diupdate !');
-                
+            if (strlen($new_password) < 8 ) {
+                $this->session->set_flashdata('password_kurang', 'Gagal ! Password minimal harus 8 karakter');
                 redirect('admin/user/'.$id_user);
+            } else {
+                if($new_password != $confirm_password) {
+                    $this->session->set_flashdata('password_gagal', 'Gagal ! Password tidak cocok !');
+                    redirect('admin/user/'.$id_user);
+                } else {
+                    $data = array(
+                        'id_user' => $id_user,
+                        'password' => password_hash($this->input->post('password_baru'), PASSWORD_DEFAULT),
+                    );
+                    $this->m_user->save($data);
+                    $this->session->set_flashdata('pesan', 'Password berhasil diupdate !');
+                    
+                    redirect('admin/user/'.$id_user);
+                }
             }
         }
     }
@@ -97,7 +101,7 @@ class Admin extends CI_Controller {
     {
         $config['upload_path'] = './assets/image/foto_user/';
         $config['allowed_types'] = 'jpg|png|jpeg';
-        $config['max_size'] = 2000;
+        $config['max_size'] = 2048;
         $this->upload->initialize($config);
         
         if (!$this->upload->do_upload('foto_user')) {
@@ -160,7 +164,7 @@ class Admin extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
             $config['upload_path'] = './assets/image/foto_user/';
             $config['allowed_types'] = 'jpg|png|jpeg';
-            $config['max_size'] = 2000;
+            $config['max_size'] = 2048;
             $this->upload->initialize($config);
 
             if (!$this->upload->do_upload('foto_user')) {
@@ -195,13 +199,18 @@ class Admin extends CI_Controller {
                     $this->session->set_flashdata('register_gagal', 'Username sudah ada !');
                     redirect('admin/data-admin/tambah-admin');
                 } else {
-                    if($new_password != $confirm_password) {
-                        $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                    if (strlen($new_password) < 8 ) {
+                        $this->session->set_flashdata('password_kurang', 'Password minimal harus 8 karakter !');
                         redirect('admin/data-admin/tambah-admin');
                     } else {
-                        $this->m_admin->add($data);
-                        $this->session->set_flashdata('pesan', 'Akun berhasil Ditambahkan !');
-                        redirect('admin/data-admin');
+                        if($new_password != $confirm_password) {
+                            $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                            redirect('admin/data-admin/tambah-admin');
+                        } else {
+                            $this->m_admin->add($data);
+                            $this->session->set_flashdata('pesan', 'Akun berhasil Ditambahkan !');
+                            redirect('admin/data-admin');
+                        }
                     }
                 }
             }
@@ -220,13 +229,18 @@ class Admin extends CI_Controller {
                 $this->session->set_flashdata('register_gagal', 'Username sudah ada !');
                 redirect('admin/data-admin/tambah-admin');
             } else {
-                if($new_password != $confirm_password) {
-                    $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                if (strlen($new_password) < 8 ) {
+                    $this->session->set_flashdata('password_kurang', 'Password minimal harus 8 karakter !');
                     redirect('admin/data-admin/tambah-admin');
                 } else {
-                    $this->m_admin->add($data);
-                    $this->session->set_flashdata('pesan', 'Akun berhasil Ditambahkan !');
-                    redirect('admin/data-admin');
+                    if($new_password != $confirm_password) {
+                        $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                        redirect('admin/data-admin/tambah-admin');
+                    } else {
+                        $this->m_admin->add($data);
+                        $this->session->set_flashdata('pesan', 'Akun berhasil Ditambahkan !');
+                        redirect('admin/data-admin');
+                    }
                 }
             }
         }
@@ -248,7 +262,7 @@ class Admin extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
             $config['upload_path'] = './assets/image/foto_user/';
             $config['allowed_types'] = 'jpg|png|jpeg';
-            $config['max_size'] = 2000;
+            $config['max_size'] = 2048;
             $this->upload->initialize($config);
             
             if (!$this->upload->do_upload('foto_user')) {
@@ -305,17 +319,21 @@ class Admin extends CI_Controller {
                                 'level' => '1',
                                 'foto_user' => $upload_data['uploads']['file_name']
                             );
-                            if($new_password != $confirm_password) {
-                                $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                            if (strlen($new_password) < 8 ) {
+                                $this->session->set_flashdata('password_kurang', 'Password minimal harus 8 karakter !');
                                 redirect('admin/data-admin/edit-admin/'.$id_user);
                             } else {
-                                $this->m_admin->edit($data);
-                                $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
-                                redirect('admin/data-admin');
+                                if($new_password != $confirm_password) {
+                                    $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                                    redirect('admin/data-admin/edit-admin/'.$id_user);
+                                } else {
+                                    $this->m_admin->edit($data);
+                                    $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
+                                    redirect('admin/data-admin');
+                                }
                             }
                         }
                     }
-                    
                 } else {
                     if ($new_password == "" && $confirm_password == "") {
                         $data = array(
@@ -337,13 +355,18 @@ class Admin extends CI_Controller {
                             'level' => '1',
                             'foto_user' => $upload_data['uploads']['file_name']
                         );
-                        if($new_password != $confirm_password) {
-                            $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                        if (strlen($new_password) < 8 ) {
+                            $this->session->set_flashdata('password_kurang', 'Password minimal harus 8 karakter !');
                             redirect('admin/data-admin/edit-admin/'.$id_user);
                         } else {
-                            $this->m_admin->edit($data);
-                            $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
-                            redirect('admin/data-admin');
+                            if($new_password != $confirm_password) {
+                                $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                                redirect('admin/data-admin/edit-admin/'.$id_user);
+                            } else {
+                                $this->m_admin->edit($data);
+                                $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
+                                redirect('admin/data-admin');
+                            }
                         }
                     }
                 }
@@ -379,13 +402,18 @@ class Admin extends CI_Controller {
                             'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                             'level' => '1'
                         );
-                        if($new_password != $confirm_password) {
-                            $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                        if (strlen($new_password) < 8 ) {
+                            $this->session->set_flashdata('password_kurang', 'Password minimal harus 8 karakter !');
                             redirect('admin/data-admin/edit-admin/'.$id_user);
                         } else {
-                            $this->m_admin->edit($data);
-                            $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
-                            redirect('admin/data-admin');
+                            if($new_password != $confirm_password) {
+                                $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                                redirect('admin/data-admin/edit-admin/'.$id_user);
+                            } else {
+                                $this->m_admin->edit($data);
+                                $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
+                                redirect('admin/data-admin');
+                            }
                         }
                     }
                 }
@@ -409,13 +437,18 @@ class Admin extends CI_Controller {
                         'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                         'level' => '1'
                     );
-                    if($new_password != $confirm_password) {
-                        $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                    if (strlen($new_password) < 8 ) {
+                        $this->session->set_flashdata('password_kurang', 'Password minimal harus 8 karakter !');
                         redirect('admin/data-admin/edit-admin/'.$id_user);
                     } else {
-                        $this->m_admin->edit($data);
-                        $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
-                        redirect('admin/data-admin');
+                        if($new_password != $confirm_password) {
+                            $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                            redirect('admin/data-admin/edit-admin/'.$id_user);
+                        } else {
+                            $this->m_admin->edit($data);
+                            $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
+                            redirect('admin/data-admin');
+                        }
                     }
                 }
             }
@@ -467,7 +500,7 @@ class Admin extends CI_Controller {
     {
         $config['upload_path'] = './assets/image/foto_akreditasi/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
-        $config['max_size'] = 2000;
+        $config['max_size'] = 2048;
         $this->upload->initialize($config);
         if (!$this->upload->do_upload('foto1_akreditasi')) {
             $id_user = $this->session->userdata('id_user');
@@ -509,7 +542,7 @@ class Admin extends CI_Controller {
     {
         $config['upload_path'] = './assets/image/foto_akreditasi/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
-        $config['max_size'] = 2000;
+        $config['max_size'] = 2048;
         $this->upload->initialize($config);
         if (!$this->upload->do_upload('foto2_akreditasi')) {
             $id_user = $this->session->userdata('id_user');
@@ -622,7 +655,7 @@ class Admin extends CI_Controller {
     {
         $config['upload_path'] = './assets/image/logo/';
         $config['allowed_types'] = 'jpg|png|jpeg';
-        $config['max_size'] = 2000;
+        $config['max_size'] = 2048;
         $this->upload->initialize($config);
         
         if (!$this->upload->do_upload('logo')) {
@@ -699,7 +732,7 @@ class Admin extends CI_Controller {
     {
         $config['upload_path'] = './assets/image/foto_struktur/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
-        $config['max_size'] = 2000;
+        $config['max_size'] = 2048;
         $this->upload->initialize($config);
         if (!$this->upload->do_upload('foto_struktur')) {
             $id_user = $this->session->userdata('id_user');
@@ -761,7 +794,7 @@ class Admin extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
             $config['upload_path'] = './assets/image/foto_program/';
             $config['allowed_types'] = 'jpg|png|jpeg';
-            $config['max_size'] = 2000;
+            $config['max_size'] = 2048;
             $this->upload->initialize($config);
 
             if (!$this->upload->do_upload('foto_program')) {
@@ -810,7 +843,7 @@ class Admin extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
             $config['upload_path'] = './assets/image/foto_program/';
             $config['allowed_types'] = 'jpg|png|jpeg';
-            $config['max_size'] = 2000;
+            $config['max_size'] = 2048;
             $this->upload->initialize($config);
             
             if (!$this->upload->do_upload('foto_program')) {
@@ -912,7 +945,7 @@ class Admin extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
             $config['upload_path'] = './assets/image/sampul_galeri/';
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
-            $config['max_size'] = 2000;
+            $config['max_size'] = 2048;
             $this->upload->initialize($config);
             if (!$this->upload->do_upload('sampul_galeri')) {
                 $id_user = $this->session->userdata('id_user');
@@ -958,7 +991,7 @@ class Admin extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
             $config['upload_path'] = './assets/image/sampul_galeri/';
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
-            $config['max_size'] = 2000;
+            $config['max_size'] = 2048;
             $this->upload->initialize($config);
             if (!$this->upload->do_upload('sampul_galeri')) {
                 $id_user = $this->session->userdata('id_user');
@@ -1075,7 +1108,7 @@ class Admin extends CI_Controller {
  
         $config['upload_path'] = './assets/image/foto_galeri/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
-        $config['max_size'] = 2000;
+        $config['max_size'] = 2048;
         $this->upload->initialize($config);
         if (!$this->upload->do_upload('foto')) {
             $id_user = $this->session->userdata('id_user');
@@ -1132,8 +1165,8 @@ class Admin extends CI_Controller {
     public function addvideo($id_galeri) {
  
         $config['upload_path'] = './assets/video/video_galeri/';
-        $config['allowed_types'] = 'mp4|mkv|3gp';
-        $config['max_size'] = 20000;
+        $config['allowed_types'] = 'mp4|mkv|3gp|avi|mov';
+        $config['max_size'] = 20480;
         $this->upload->initialize($config);
 
         if (!$this->upload->do_upload('video')) {
@@ -1226,7 +1259,7 @@ class Admin extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
             $config['upload_path'] = './assets/image/foto_berita/';
             $config['allowed_types'] = 'jpg|png|jpeg';
-            $config['max_size'] = 2000;
+            $config['max_size'] = 2048;
             $this->upload->initialize($config);
 
             if (!$this->upload->do_upload('gambar_berita')) {
@@ -1278,7 +1311,7 @@ class Admin extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
             $config['upload_path'] = './assets/image/foto_berita/';
             $config['allowed_types'] = 'jpg|png|jpeg';
-            $config['max_size'] = 2000;
+            $config['max_size'] = 2048;
             $this->upload->initialize($config);
             
             if (!$this->upload->do_upload('gambar_berita')) {

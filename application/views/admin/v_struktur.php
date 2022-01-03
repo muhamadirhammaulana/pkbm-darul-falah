@@ -40,10 +40,10 @@
                                             </div>
                                             <div class="col-md-4 editor-struktur" hidden>
                                                 <?php echo form_open_multipart('admin/foto_struktur'); ?>
-                                                <label for="exampleInputFile">Ganti Foto</label>
+                                                <label for="exampleInputFile">Ganti Foto <small class="text-muted">(format: jpg/jpeg/png, ukuran maks: 2 MB)</small></label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="exampleInputFile" name="foto_struktur" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan File Foto')" required>
+                                                        <input type="file" class="custom-file-input" id="exampleInputFile" name="foto_struktur" accept=".jpg,.jpeg,.png" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan File Foto')" required>
                                                         <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
                                                     </div>
                                                 </div>

@@ -50,10 +50,10 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputFile">Sampul Galeri</label>
+                                                    <label for="exampleInputFile">Sampul Galeri <small class="text-muted">(format: jpg/jpeg/png, ukuran maks: 2 MB)</small></label>
                                                     <div class="input-group">
                                                         <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="exampleInputFile" name="sampul_galeri" required>
+                                                            <input type="file" class="custom-file-input" id="exampleInputFile" name="sampul_galeri" accept=".jpg,.jpeg,.png" required>
                                                             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                                         </div>
                                                     </div>

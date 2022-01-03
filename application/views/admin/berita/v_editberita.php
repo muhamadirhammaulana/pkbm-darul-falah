@@ -61,10 +61,10 @@
                                                         <input type="text" class="form-control" value="<?=$berita->judul_berita?>" name="judul_berita" id="judulberita" placeholder="Masukkan Judul Berita" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan Judul Berita')" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="exampleInputFile">Ganti Gambar Berita</label>
+                                                        <label for="exampleInputFile">Ganti Foto Berita <small class="text-muted">(format: jpg/jpeg/png, ukuran maks: 2 MB)</small></label>
                                                         <div class="input-group">
                                                         <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="gambar_berita" name="gambar_berita">
+                                                            <input type="file" class="custom-file-input" id="gambar_berita" name="gambar_berita" accept=".jpg,.jpeg,.png">
                                                             <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
                                                         </div>
                                                         </div>

@@ -49,10 +49,10 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="exampleInputFile">Foto Program</label>
+                                                        <label for="exampleInputFile">Foto Program <small class="text-muted">(format: jpg/jpeg/png, ukuran maks: 2 MB)</small></label>
                                                         <div class="input-group">
                                                             <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" name="foto_program" id="fotoprogram" required>
+                                                                <input type="file" class="custom-file-input" name="foto_program" id="fotoprogram" accept=".jpg,.jpeg,.png" required>
                                                                 <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
                                                             </div>
                                                         </div>

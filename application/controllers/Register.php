@@ -28,7 +28,7 @@ class Register extends CI_Controller {
             $config['max_size'] = 2000;
             $this->upload->initialize($config);
 
-            if (!$this->upload->do_upload('foto_program')) {
+            if (!$this->upload->do_upload('foto_user')) {
 
                 $data = array(
                     'profil' => $this->m_profil->detail(),

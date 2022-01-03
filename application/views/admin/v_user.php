@@ -147,10 +147,10 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label for="exampleInputFile">Upload Foto Profil</label>
+                                        <label for="exampleInputFile">Upload Foto Profil <small class="text-muted">(format: jpg/jpeg/png, ukuran maks: 2MB)</small></label>
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="exampleInputFile" name="foto_user" accept="image/*" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan File Foto')" required>
+                                                <input type="file" class="custom-file-input" id="exampleInputFile" name="foto_user" accept=".jpg,.jpeg,.png" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan File Foto')" required>
                                                 <label class="custom-file-label" for="exampleInputFile">Pilih file</label><br>
                                             </div>
                                         </div>

@@ -59,10 +59,10 @@
                                                         <input type="text" class="form-control" value="<?=$galeri->nama_galeri?>" name="nama_galeri" placeholder="Masukkan Nama Galeri" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan Nama Galeri')" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="exampleInputFile">Ganti Sampul Galeri</label>
+                                                        <label for="exampleInputFile">Ganti Sampul Galeri <small class="text-muted">(format: jpg/jpeg/png, ukuran maks: 2 MB)</small></label>
                                                         <div class="input-group">
                                                             <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="exampleInputFile" name="sampul_galeri">
+                                                                <input type="file" class="custom-file-input" id="exampleInputFile" name="sampul_galeri" accept=".jpg,.jpeg,.png">
                                                                 <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                                             </div>
                                                         </div>

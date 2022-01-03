@@ -281,6 +281,14 @@
                 if(isset($_SESSION['register_gagal'])) {
                     unset($_SESSION['register_gagal']);
                 }
+
+                if($this->session->flashdata('password_kurang')) { ?>
+                    toastr.error("<?php echo $this->session->flashdata('password_kurang'); ?>");
+                <?php }
+
+                if(isset($_SESSION['password_kurang'])) {
+                    unset($_SESSION['password_kurang']);
+                }
                 ?> 
             });
         </script>
