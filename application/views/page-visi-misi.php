@@ -28,15 +28,21 @@
               	<h1 class="display-6 text-uppercase text-center">Visi, Misi dan Tujuan <?=$profil->nama?></h1>
                 <p class="lead">
                 	VISI
-                    <?=$visimisi->visi?>
+                    <div>
+                        <?=$visimisi->visi?>
+                    </div>
                 </p>
                 <p class="lead">
                 	MISI
-                    <?=$visimisi->misi?>
+                    <div>
+                        <?=$visimisi->misi?>
+                    </div>
                	</p>
       			<p class="lead">
                 	TUJUAN
-                    <?=$visimisi->tujuan?>
+                    <div>
+                        <?=$visimisi->tujuan?>
+                    </div>
                	</p>
             </div>
         </main>
