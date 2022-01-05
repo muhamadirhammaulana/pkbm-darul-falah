@@ -1,6 +1,5 @@
 <?php
 
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
@@ -531,7 +530,7 @@ class Admin extends CI_Controller {
                 'foto1_akreditasi' => $upload_data['uploads']['file_name']
             );
             $this->m_akreditasi->save($data);
-            $this->session->set_flashdata('pesan', 'Gambar berhasil Disimpan !');
+            $this->session->set_flashdata('pesan', 'Foto berhasil Disimpan !');
             
             redirect('admin/akreditasi');
             
@@ -573,7 +572,7 @@ class Admin extends CI_Controller {
                 'foto2_akreditasi' => $upload_data['uploads']['file_name']
             );
             $this->m_akreditasi->save($data);
-            $this->session->set_flashdata('pesan', 'Gambar berhasil Disimpan !');
+            $this->session->set_flashdata('pesan', 'Foto berhasil Disimpan !');
             
             redirect('admin/akreditasi');
             
@@ -1262,7 +1261,7 @@ class Admin extends CI_Controller {
             $config['max_size'] = 2048;
             $this->upload->initialize($config);
 
-            if (!$this->upload->do_upload('gambar_berita')) {
+            if (!$this->upload->do_upload('foto_berita')) {
                 $id_user = $this->session->userdata('id_user');
                 $data = array(
                     'user' => $this->m_user->detail($id_user),
@@ -1285,7 +1284,7 @@ class Admin extends CI_Controller {
                     'isi_berita' => $this->input->post('isi_berita'),
                     'tgl_berita' => date('Y-m-d'),
                     'id_user' => $this->session->userdata('id_user'),
-                    'gambar_berita' => $upload_data['uploads']['file_name']
+                    'foto_berita' => $upload_data['uploads']['file_name']
                 );
                 $this->m_berita->add($data);
                 $this->session->set_flashdata('pesan', 'Berita berhasil diposting !');
@@ -1314,7 +1313,7 @@ class Admin extends CI_Controller {
             $config['max_size'] = 2048;
             $this->upload->initialize($config);
             
-            if (!$this->upload->do_upload('gambar_berita')) {
+            if (!$this->upload->do_upload('foto_berita')) {
                 $id_user = $this->session->userdata('id_user');
                 $data = array(
                     'user' => $this->m_user->detail($id_user),
@@ -1333,8 +1332,8 @@ class Admin extends CI_Controller {
 
                 // Menghapus file foto lama
                 $berita=$this->m_berita->detail($id_berita);
-                if ($berita->gambar_berita != "") {
-                    unlink('./assets/image/foto_berita/'.$berita->gambar_berita);
+                if ($berita->foto_berita != "") {
+                    unlink('./assets/image/foto_berita/'.$berita->foto_berita);
                 }
                 // End menghapus file foto lama
 
@@ -1345,7 +1344,7 @@ class Admin extends CI_Controller {
                     'isi_berita' => $this->input->post('isi_berita'),
                     //'tgl_berita' => date('Y-m-d'),
                     'id_user' => $this->session->userdata('id_user'),
-                    'gambar_berita' => $upload_data['uploads']['file_name']
+                    'foto_berita' => $upload_data['uploads']['file_name']
                 );
                 $this->m_berita->edit($data);
                 $this->session->set_flashdata('pesan', 'Berita berhasil direposting !');
@@ -1381,8 +1380,8 @@ class Admin extends CI_Controller {
     public function deleteberita($id_berita) {
         // Menghapus file foto lama
         $berita=$this->m_berita->detail($id_berita);
-        if ($berita->gambar_berita != "") {
-            unlink('./assets/image/foto_berita/'.$berita->gambar_berita);
+        if ($berita->foto_berita != "") {
+            unlink('./assets/image/foto_berita/'.$berita->foto_berita);
         }
         // End menghapus file foto lama
 
@@ -1446,7 +1445,7 @@ class Admin extends CI_Controller {
                 'foto1_legalitas' => $upload_data['uploads']['file_name']
             );
             $this->m_legalitas->save($data);
-            $this->session->set_flashdata('pesan', 'Gambar berhasil Disimpan !');
+            $this->session->set_flashdata('pesan', 'Foto berhasil Disimpan !');
             
             redirect('admin/legalitas');
             
@@ -1488,7 +1487,7 @@ class Admin extends CI_Controller {
                 'foto2_legalitas' => $upload_data['uploads']['file_name']
             );
             $this->m_legalitas->save($data);
-            $this->session->set_flashdata('pesan', 'Gambar berhasil Disimpan !');
+            $this->session->set_flashdata('pesan', 'Foto berhasil Disimpan !');
             
             redirect('admin/legalitas');
             

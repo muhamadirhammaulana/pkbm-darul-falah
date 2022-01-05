@@ -48,7 +48,7 @@
                                                     </div>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary btn-flat mt-2 mr-2 save-akreditasi1"><i class="fa fa-save"></i> Simpan</button>
-                                                <button type="button" class="btn btn-danger btn-flat mt-2 cancel-akreditasi1" onclick="location.reload()"><i class="fa fa-times-circle"></i> Batal</button>
+                                                <a href="<?=base_url('admin/akreditasi')?>" class="btn btn-danger btn-flat mt-2 cancel-akreditasi1"><i class="fa fa-times-circle"></i> Batal</a>
                                                 <?php echo form_close(); ?>
                                             </div>
                                         </div>
@@ -81,7 +81,7 @@
                                                     </div>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary btn-flat mt-2 mr-2 save-akreditasi2"><i class="fa fa-save"></i> Simpan</button>
-                                                <button type="button" class="btn btn-danger btn-flat mt-2 cancel-akreditasi2" onclick="location.reload()"><i class="fa fa-times-circle"></i> Batal</button>
+                                                <a href="<?=base_url('admin/akreditasi')?>" class="btn btn-danger btn-flat mt-2 cancel-akreditasi2"><i class="fa fa-times-circle"></i> Batal</a>
                                                 <?php echo form_close(); ?>
                                             </div>
                                         </div>

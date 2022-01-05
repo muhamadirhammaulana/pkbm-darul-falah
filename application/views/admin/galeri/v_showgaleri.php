@@ -6,13 +6,13 @@
                 <div class="container-fluid">
                     <div class="row mb-1">
                         <div class="col-sm-6">
-                            <h1>Gallery : <?=$galeri->nama_galeri?></h1>
+                            <h1>Galeri : <?=$galeri->nama_galeri?></h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="<?=base_url('admin')?>">Home</a></li>
                             <li class="breadcrumb-item"><a href="<?=base_url('admin/galeri')?>">Galeri</a></li>
-                            <li class="breadcrumb-item active">Detail Gallery</li>
+                            <li class="breadcrumb-item active">Detail Galeri</li>
                             </ol>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <?php
-                                                    echo form_open_multipart('admin/addfoto/'.$galeri->id_galeri);
+                                                    echo form_open_multipart('admin/galeri/detail-galeri/tambah-foto/'.$galeri->id_galeri);
                                                 ?>
                                                 <div class="card card-light rounded-0">
                                                     <div class="card-body">
@@ -65,7 +65,7 @@
                                             
                                             <div class="col-md-6">
                                                 <?php
-                                                    echo form_open_multipart('admin/addvideo/'.$galeri->id_galeri);
+                                                    echo form_open_multipart('admin/galeri/detail-galeri/tambah-video/'.$galeri->id_galeri);
                                                 ?>
                                                 <div class="card card-light rounded-0">
                                                     <div class="card-body">

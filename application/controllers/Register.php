@@ -23,9 +23,9 @@ class Register extends CI_Controller {
 
         if ($this->form_validation->run() == TRUE) {
 
-            $config['upload_path'] = './assets/foto_user/';
+            $config['upload_path'] = './assets/image/foto_user/';
             $config['allowed_types'] = 'jpg|png|jpeg';
-            $config['max_size'] = 2000;
+            $config['max_size'] = 2048;
             $this->upload->initialize($config);
 
             if (!$this->upload->do_upload('foto_user')) {
@@ -40,7 +40,7 @@ class Register extends CI_Controller {
             } else {
                 $upload_data = array('uploads' => $this->upload->data());
                 $config['image_library'] = 'gd2';
-                $config['source_image'] = './assets/foto_program/'.$upload_data['uploads']['file_name'];
+                $config['source_image'] = './assets/image/foto_user/'.$upload_data['uploads']['file_name'];
                 $this->load->library('image_lib', $config);
 
                 $data = array(

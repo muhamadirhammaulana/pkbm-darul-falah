@@ -77,5 +77,7 @@ $route['admin/pembelajaran/edit-program/(:any)'] = 'admin/editprogram/$1';
 $route['admin/galeri/tambah-galeri'] = 'admin/addgaleri';
 $route['admin/galeri/edit-galeri/(:any)'] = 'admin/editgaleri/$1';
 $route['admin/galeri/detail-galeri/(:any)'] = 'admin/showgaleri/$1';
+$route['admin/galeri/detail-galeri/tambah-foto/(:any)'] = 'admin/addfoto/$1';
+$route['admin/galeri/detail-galeri/tambah-video/(:any)'] = 'admin/addvideo/$1';
 $route['admin/berita/tambah-berita'] = 'admin/addberita';
 $route['admin/berita/edit-berita/(:any)'] = 'admin/editberita/$1';
