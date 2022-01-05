@@ -634,9 +634,11 @@ class Admin extends CI_Controller {
         $this->upload->initialize($config);
         
         if (!$this->upload->do_upload('logo')) {
+            $id_user = $this->session->userdata('id_user');
             $data = array(
                 'user' => $this->m_user->detail($id_user),
                 'profil' => $this->m_profil->detail(),
+                'medsos' => $this->m_profil->list_medsos(),
                 'error' => $this->upload->display_errors(),
                 'isi' => 'admin/v_profil'
             );

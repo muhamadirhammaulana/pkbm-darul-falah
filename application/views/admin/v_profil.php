@@ -74,7 +74,7 @@
                                     <div class="card-footer">
                                         <button type="button" class="btn btn-success btn-flat edit-profil" style="background-color: #4BDE3E; border-color: #4BDE3E;"><i class="fa fa-edit"></i> Edit Profil</button>
                                         <button type="submit" class="btn btn-primary btn-flat save-profil" hidden><i class="fa fa-save"></i> Simpan</button>
-                                        <button type="button" class="btn btn-danger btn-flat cancel-profil" onclick="location.reload()" hidden><i class="fa fa-times-circle"></i> Batal</button>
+                                        <a href="<?=base_url('admin/profil')?>" class="btn btn-danger btn-flat cancel-profil" hidden><i class="fa fa-times-circle"></i> Batal</a>
                                     </div>
                                     <?php echo form_close(); ?>
                                 </div>
@@ -149,7 +149,7 @@
                                 <i class="fas fa-save"></i>
                                 Simpan
                             </button>
-                            <button type="button" class="btn btn-danger btn-flat btn-sm" data-dismiss="modal" onclick="location.reload()">Batal</button>
+                            <a href="<?=base_url('admin/profil')?>" class="btn btn-danger btn-flat btn-sm">Batal</a>
                             <?php echo form_close(); ?>
                         </div>
                     </div>
@@ -190,7 +190,7 @@
                                 <i class="fas fa-save"></i>
                                 Simpan
                             </button>
-                            <button type="button" class="btn btn-danger btn-flat btn-sm" data-dismiss="modal" onclick="location.reload()">Batal</button>
+                            <a href="<?=base_url('admin/profil')?>" class="btn btn-danger btn-flat btn-sm">Batal</a>
                             <?php echo form_close(); ?>
                         </div>
                     </div>

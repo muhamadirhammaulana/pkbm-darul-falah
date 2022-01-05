@@ -48,7 +48,7 @@
                                                     </div>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary btn-flat mt-2 mr-2 save-legalitas1"><i class="fa fa-save"></i> Simpan</button>
-                                                <button type="button" class="btn btn-danger btn-flat mt-2 cancel-legalitas1" onclick="location.reload()"><i class="fa fa-times-circle"></i> Batal</button>
+                                                <a href="<?=base_url('admin/legalitas')?>" class="btn btn-danger btn-flat mt-2 cancel-legalitas1"><i class="fa fa-times-circle"></i> Batal</a>
                                                 <?php echo form_close(); ?>
                                             </div>
                                         </div>
@@ -81,7 +81,7 @@
                                                     </div>
                                                 </div>
                                                     <button type="submit" class="btn btn-primary btn-flat mt-2 mr-2 save-legalitas2"><i class="fa fa-save"></i> Simpan</button>
-                                                    <button type="button" class="btn btn-danger btn-flat mt-2 cancel-legalitas2" onclick="location.reload()"><i class="fa fa-times-circle"></i> Batal</button>
+                                                    <a href="<?=base_url('admin/legalitas')?>" class="btn btn-danger btn-flat mt-2 cancel-legalitas2"><i class="fa fa-times-circle"></i> Batal</a>
                                                 <?php echo form_close(); ?>
                                             </div>
                                         </div>

@@ -38,7 +38,7 @@
                             <tr>
                                 <th class="col-1">No.</th>
                                 <th>Judul Berita</th>
-                                <th>Gambar Berita</th>
+                                <th>Foto Berita</th>
                                 <th>Tanggal Posting</th>
                                 <th>Pemosting</th>
                                 <th class="col-2">Action</th>
@@ -51,8 +51,8 @@
                                 <td><?=$value->judul_berita?></td>
                                 <td>
                                     <?php
-                                    if ($value->gambar_berita != "") {
-                                        $image = $value->gambar_berita;
+                                    if ($value->foto_berita != "") {
+                                        $image = $value->foto_berita;
                                     } else {
                                         $image = "default.png";
                                     }
@@ -111,4 +111,3 @@
             </div>
             <!-- /.modal -->
             <?php } ?>
-            

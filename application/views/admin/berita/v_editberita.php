@@ -45,8 +45,8 @@
                                                     <div class="form-group">
                                                         <div class="form-group">
                                                             <?php
-                                                                if ($berita->gambar_berita != "") {
-                                                                    $image = $berita->gambar_berita;
+                                                                if ($berita->foto_berita != "") {
+                                                                    $image = $berita->foto_berita;
                                                                 } else {
                                                                     $image = "default.png";
                                                                 }
@@ -64,7 +64,7 @@
                                                         <label for="exampleInputFile">Ganti Foto Berita <small class="text-muted">(format: jpg/jpeg/png, ukuran maks: 2 MB)</small></label>
                                                         <div class="input-group">
                                                         <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="gambar_berita" name="gambar_berita" accept=".jpg,.jpeg,.png">
+                                                            <input type="file" class="custom-file-input" id="foto_berita" name="foto_berita" accept=".jpg,.jpeg,.png">
                                                             <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
                                                         </div>
                                                         </div>
@@ -106,4 +106,3 @@
                 <!-- /.content -->
             </div>
             <!-- /.content-wrapper -->
-            

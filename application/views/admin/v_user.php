@@ -92,10 +92,10 @@
                                             <i class="fa fa-save"></i>
                                             Simpan
                                         </button>
-                                        <button type="button" class="btn btn-danger btn-flat btnCancel" onclick="location.reload()" hidden>
+                                        <a href="<?=base_url('admin/profil-pengguna/'.$this->session->userdata('id_user'))?>" class="btn btn-danger btn-flat btnCancel" hidden>
                                             <i class="fa fa-times-circle"></i>
                                             Batal
-                                        </button>
+                                        </a>
                                     </div>
                                     <?php echo form_close(); ?>
 
@@ -144,7 +144,7 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content rounded-0">
                         <div class="modal-body">
-                            <?php echo form_open_multipart('admin/foto_profil/'.$this->session->userdata('id_user')) ?>
+                            <?php echo form_open_multipart('admin/profil-pengguna/foto-profil/'.$this->session->userdata('id_user')) ?>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group">
@@ -162,7 +162,7 @@
                                         <i class="fas fa-save"></i>
                                         Simpan
                                     </button>
-                                    <button type="button" class="btn btn-danger btn-flat btn-sm" data-dismiss="modal">Batal</button>
+                                    <a href="<?=base_url('admin/profil-pengguna/'.$this->session->userdata('id_user'))?>" class="btn btn-danger btn-flat btn-sm">Batal</a>
                             <?php echo form_close(); ?>
                         </div>
                     </div>

@@ -49,7 +49,7 @@
                                                 </div>
                                                 <div class="input-group">
                                                     <button type="submit" class="btn btn-primary btn-flat mt-2 mr-2 save-struktur"><i class="fa fa-save"></i> Simpan</button><br>
-                                                    <button type="button" class="btn btn-danger btn-flat mt-2 cancel-struktur" onclick="location.reload()"><i class="fa fa-times-circle"></i> Batal</button><br>
+                                                    <a href="<?=base_url('admin/struktur')?>" class="btn btn-danger btn-flat mt-2 cancel-struktur"><i class="fa fa-times-circle"></i> Batal</a><br>
                                                 </div>
                                                 <?php echo form_close(); ?>
                                             </div>
@@ -63,4 +63,3 @@
                 <!-- /.content -->
             </div>
             <!-- /.content-wrapper -->
-            

@@ -71,6 +71,7 @@ $route['admin/data-admin'] = 'admin/data_admin';
 $route['admin/data-admin/tambah-admin'] = 'admin/add_admin';
 $route['admin/data-admin/edit-admin/(:any)'] = 'admin/edit_admin/$1';
 $route['admin/profil-pengguna/(:any)'] = 'admin/user/$1';
+$route['admin/profil-pengguna/foto-profil/(:any)'] = 'admin/foto_profil/$1';
 $route['admin/visi-misi-tujuan'] = 'admin/visi_misi';
 $route['admin/pembelajaran/tambah-program'] = 'admin/addprogram';
 $route['admin/pembelajaran/edit-program/(:any)'] = 'admin/editprogram/$1';
