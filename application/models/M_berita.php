@@ -8,7 +8,6 @@ class M_berita extends CI_Model {
         $this->db->select('*');
         $this->db->from('tbl_berita');
         $this->db->join('tbl_user', 'tbl_user.id_user = tbl_berita.id_user', 'left');
-        
         $this->db->order_by('id_berita', 'desc');
         return $this->db->get()->result();
     }
@@ -22,19 +21,16 @@ class M_berita extends CI_Model {
 
     public function add($data) {
         $this->db->insert('tbl_berita', $data);
-        
     }
 
     public function edit($data) {
         $this->db->where('id_berita', $data['id_berita']);
         $this->db->update('tbl_berita', $data);
-        
     }
 
     public function delete($data) {
         $this->db->where('id_berita', $data['id_berita']);
         $this->db->delete('tbl_berita', $data);
-        
     }
 
 }

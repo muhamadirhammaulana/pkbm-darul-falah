@@ -9,13 +9,11 @@ class M_struktur extends CI_Model {
         $this->db->from('tbl_struktur');
         $this->db->where('id_struktur', 1);
         return $this->db->get()->row();
-        
     }
 
     public function save($data) {
         $this->db->where('id_struktur', $data['id_struktur']);
         $this->db->update('tbl_struktur', $data);
-        
     }
 
 }

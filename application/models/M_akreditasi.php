@@ -9,13 +9,11 @@ class M_akreditasi extends CI_Model {
         $this->db->from('tbl_akreditasi');
         $this->db->where('id_akreditasi', 1);
         return $this->db->get()->row();
-        
     }
 
     public function save($data) {
         $this->db->where('id_akreditasi', $data['id_akreditasi']);
         $this->db->update('tbl_akreditasi', $data);
-        
     }
 
 }

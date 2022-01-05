@@ -9,13 +9,11 @@ class M_visimisi extends CI_Model {
         $this->db->from('tbl_visimisi');
         $this->db->where('id_visimisi', 1);
         return $this->db->get()->row();
-        
     }
 
     public function save($data) {
         $this->db->where('id_visimisi', $data['id_visimisi']);
         $this->db->update('tbl_visimisi', $data);
-        
     }
 
 }

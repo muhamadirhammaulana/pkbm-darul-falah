@@ -5,24 +5,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Register extends CI_Controller {
     
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->load->model('m_register');
         $this->load->model('m_home');
         $this->load->model('m_profil');
-        
     }
     
-    public function index()
-    {
+    public function index() {
         $this->form_validation->set_rules('nama_userreg', 'Nama Program', 'required');
         $this->form_validation->set_rules('usernamereg', 'Username', 'required');
         $this->form_validation->set_rules('passwordreg', 'Password', 'required');
         $this->form_validation->set_rules('levelreg', 'Level', 'required');
 
         if ($this->form_validation->run() == TRUE) {
-
             $config['upload_path'] = './assets/image/foto_user/';
             $config['allowed_types'] = 'jpg|png|jpeg';
             $config['max_size'] = 2048;

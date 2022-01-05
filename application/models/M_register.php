@@ -1,6 +1,5 @@
 <?php
 
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_register extends CI_Model {
@@ -12,6 +11,7 @@ class M_register extends CI_Model {
     function check_user_exist($username){
         $this->db->where('username',$username);
         $this->db->from('tbl_user');
+        
         $query= $this->db->get();
         if($query->num_rows() > 0){
             return true;

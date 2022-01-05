@@ -9,13 +9,11 @@ class M_legalitas extends CI_Model {
         $this->db->from('tbl_legalitas');
         $this->db->where('id_legalitas', 1);
         return $this->db->get()->row();
-        
     }
 
     public function save($data) {
         $this->db->where('id_legalitas', $data['id_legalitas']);
         $this->db->update('tbl_legalitas', $data);
-        
     }
 
 }

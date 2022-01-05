@@ -4,15 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
     
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->load->library('user_login');
         $this->load->model('m_home');
     }
 
-    public function index()
-    {
+    public function index() {
         $this->form_validation->set_rules('username', 'Username', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
 
@@ -29,8 +27,7 @@ class Login extends CI_Controller {
         $this->load->view('page-login', $data, FALSE);
     }
 
-    public function logout()
-    {
+    public function logout() {
         $this->user_login->logout();
     }
 

@@ -1,6 +1,5 @@
 <?php
 
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_pembelajaran extends CI_Model {
@@ -31,7 +30,6 @@ class M_pembelajaran extends CI_Model {
     public function delete($data) {
         $this->db->where('id_program', $data['id_program']);
         $this->db->delete('tbl_program', $data);
-        
     }
 
 }
