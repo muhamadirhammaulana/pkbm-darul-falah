@@ -4,8 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
     
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->load->model('m_admin');
         $this->load->model('m_akreditasi');
@@ -20,8 +19,7 @@ class Admin extends CI_Controller {
         $this->load->model('m_dashboard');
     }
 
-    public function index()
-    {
+    public function index() {
         $id_user = $this->session->userdata('id_user');
         $data = array(
             'user' => $this->m_user->detail($id_user),
@@ -36,8 +34,7 @@ class Admin extends CI_Controller {
 
     /* User */
 
-    public function user($id_user)
-    {
+    public function user($id_user) {
         $data = array(
             'user' => $this->m_user->detail($id_user),
             'profil' => $this->m_profil->detail(),
@@ -46,13 +43,11 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layout/v_wrapper', $data, FALSE);
     }
 
-    public function update_user($id_user)
-    {
+    public function update_user($id_user) {
         $this->form_validation->set_rules('nama_user', 'Nama User', 'required');
         $this->form_validation->set_rules('username', 'Username', 'required');
 
         if ($this->form_validation->run() == TRUE) {
-
             $data = array(
                 'id_user' => $id_user,
                 'nama_user' => $this->input->post('nama_user'),
@@ -65,8 +60,7 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function change_password($id_user)
-    {
+    public function change_password($id_user) {
         $this->form_validation->set_rules('password_baru', 'Password', 'required');
         $this->form_validation->set_rules('konfirmasi_password_baru', 'Password', 'required');
 
@@ -96,8 +90,7 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function foto_profil($id_user)
-    {
+    public function foto_profil($id_user) {
         $config['upload_path'] = './assets/image/foto_user/';
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size'] = 2048;
@@ -133,7 +126,6 @@ class Admin extends CI_Controller {
             $this->session->set_flashdata('pesan', 'Foto berhasil Diupdate !');
             
             redirect('admin/user/'.$id_user);
-            
         }
     }
 
@@ -141,8 +133,7 @@ class Admin extends CI_Controller {
 
     /* Data Admin */
 
-    public function data_admin()
-    {
+    public function data_admin() {
         $id_user = $this->session->userdata('id_user');
         $data = array(
             'user' => $this->m_user->detail($id_user),
@@ -153,8 +144,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layout/v_wrapper', $data, FALSE);
     }
 
-    public function add_admin()
-    {
+    public function add_admin() {
         $this->form_validation->set_rules('nama_user', 'Nama User', 'required');
         $this->form_validation->set_rules('username', 'Username', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
@@ -176,8 +166,7 @@ class Admin extends CI_Controller {
                 );
                 $this->load->view('admin/layout/v_wrapper', $data, FALSE);
                 
-            }
-            else {
+            } else {
                 $upload_data = array('uploads' => $this->upload->data());
                 $config['image_library'] = 'gd2';
                 $config['source_image'] = './assets/image/foto_user/'.$upload_data['uploads']['file_name'];
@@ -253,8 +242,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layout/v_wrapper', $data, FALSE);
     }
 
-    public function edit_admin($id_user)
-    {
+    public function edit_admin($id_user) {
         $this->form_validation->set_rules('nama_user', 'Nama User', 'required');
         $this->form_validation->set_rules('username', 'Username', 'required');
 
@@ -273,8 +261,7 @@ class Admin extends CI_Controller {
                     'isi' => 'admin/admin/v_editadmin'
                 );
                 $this->load->view('admin/layout/v_wrapper', $data, FALSE); 
-            }
-            else {
+            } else {
                 $upload_data = array('uploads' => $this->upload->data());
                 $config['image_library'] = 'gd2';
                 $config['source_image'] = './assets/image/foto_user/'.$upload_data['uploads']['file_name'];
@@ -416,7 +403,6 @@ class Admin extends CI_Controller {
                         }
                     }
                 }
-                
             } else {
                 if ($new_password == "" && $confirm_password == "") {
                     $data = array(
@@ -483,8 +469,7 @@ class Admin extends CI_Controller {
 
     /* Akreditasi */
 
-    public function akreditasi()
-    {
+    public function akreditasi() {
         $id_user = $this->session->userdata('id_user');
         $data = array(
             'user' => $this->m_user->detail($id_user),
@@ -495,8 +480,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layout/v_wrapper', $data, FALSE);
     }
 
-    public function foto1_akreditasi()
-    {
+    public function foto1_akreditasi() {
         $config['upload_path'] = './assets/image/foto_akreditasi/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['max_size'] = 2048;
@@ -537,8 +521,7 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function foto2_akreditasi()
-    {
+    public function foto2_akreditasi() {
         $config['upload_path'] = './assets/image/foto_akreditasi/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['max_size'] = 2048;
@@ -583,8 +566,7 @@ class Admin extends CI_Controller {
 
     /* Visi Misi */
 
-    public function visi_misi()
-    {
+    public function visi_misi() {
         $this->form_validation->set_rules('visi', 'Visi', 'required');
         $this->form_validation->set_rules('misi', 'Misi', 'required');
         $this->form_validation->set_rules('tujuan', 'Tujuan', 'required');
@@ -601,7 +583,6 @@ class Admin extends CI_Controller {
             $this->session->set_flashdata('pesan', 'Data berhasil Disimpan !');
             
             redirect('admin/visi-misi-tujuan');
-
         }
 
         $id_user = $this->session->userdata('id_user');
@@ -612,21 +593,18 @@ class Admin extends CI_Controller {
             'isi' => 'admin/v_visimisi'
         );
         $this->load->view('admin/layout/v_wrapper', $data, FALSE);
-
     }
 
     /* End Visi Misi */
 
     /* Profil */
 
-    public function profil()
-    {
+    public function profil() {
         $this->form_validation->set_rules('nama', 'Nama Lembaga', 'required');
         $this->form_validation->set_rules('no_telp', 'Nomor Telepon Lembaga', 'required');
         $this->form_validation->set_rules('email', 'Email Lembaga', 'required');
 
         if ($this->form_validation->run() == TRUE) {
-            
             $data = array(
                 'id_profil' => '1',
                 'nama' => $this->input->post('nama'),
@@ -637,7 +615,6 @@ class Admin extends CI_Controller {
             $this->session->set_flashdata('pesan', 'Profil berhasil diupdate !');
             
             redirect('admin/profil');
-
         }
 
         $id_user = $this->session->userdata('id_user');
@@ -650,8 +627,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layout/v_wrapper', $data, FALSE);
     }
 
-    public function logo()
-    {
+    public function logo() {
         $config['upload_path'] = './assets/image/logo/';
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size'] = 2048;
@@ -687,12 +663,10 @@ class Admin extends CI_Controller {
             $this->session->set_flashdata('pesan', 'Logo berhasil Diubah !');
             
             redirect('admin/profil');
-            
         }
     }
 
-    public function medsos($id_medsos)
-    {
+    public function medsos($id_medsos) {
         $this->form_validation->set_rules('nama_medsos', 'Nama Media Sosial', 'required');
         $this->form_validation->set_rules('link_medsos', 'Link Media Sosial', 'required');
 
@@ -707,7 +681,6 @@ class Admin extends CI_Controller {
             $this->session->set_flashdata('pesan', 'Media Sosial berhasil diupdate !');
             
             redirect('admin/profil');
-
         }
     }
 
@@ -715,8 +688,7 @@ class Admin extends CI_Controller {
 
     /* Struktur */
 
-    public function struktur()
-    {
+    public function struktur() {
         $id_user = $this->session->userdata('id_user');
         $data = array(
             'user' => $this->m_user->detail($id_user),
@@ -727,12 +699,12 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layout/v_wrapper', $data, FALSE);
     }
 
-    public function foto_struktur()
-    {
+    public function foto_struktur() {
         $config['upload_path'] = './assets/image/foto_struktur/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['max_size'] = 2048;
         $this->upload->initialize($config);
+
         if (!$this->upload->do_upload('foto_struktur')) {
             $id_user = $this->session->userdata('id_user');
             $data = array(
@@ -765,7 +737,6 @@ class Admin extends CI_Controller {
             $this->session->set_flashdata('pesan', 'Foto berhasil Disimpan !');
             
             redirect('admin/struktur');
-            
         }
     }
 
@@ -773,8 +744,7 @@ class Admin extends CI_Controller {
 
     /* Pembelajaran */
 
-    public function pembelajaran()
-    {
+    public function pembelajaran() {
         $id_user = $this->session->userdata('id_user');
         $data = array(
             'user' => $this->m_user->detail($id_user),
@@ -785,8 +755,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layout/v_wrapper', $data, FALSE);
     }
 
-    public function addprogram()
-    {
+    public function addprogram() {
         $this->form_validation->set_rules('nama_program', 'Nama Program', 'required');
         $this->form_validation->set_rules('ket_program', 'Keterangan Program', 'required', array('required'=>'%s harus diisi'));
 
@@ -806,8 +775,7 @@ class Admin extends CI_Controller {
                 );
                 $this->load->view('admin/layout/v_wrapper', $data, FALSE);
                 
-            }
-            else {
+            } else {
                 $upload_data = array('uploads' => $this->upload->data());
                 $config['image_library'] = 'gd2';
                 $config['source_image'] = './assets/image/foto_program/'.$upload_data['uploads']['file_name'];
@@ -823,7 +791,6 @@ class Admin extends CI_Controller {
                 
                 redirect('admin/pembelajaran');
             }
-
         }
 
         $id_user = $this->session->userdata('id_user');
@@ -855,8 +822,7 @@ class Admin extends CI_Controller {
                     'isi' => 'admin/pembelajaran/v_editprogram'
                 );
                 $this->load->view('admin/layout/v_wrapper', $data, FALSE); 
-            }
-            else {
+            } else {
                 $upload_data = array('uploads' => $this->upload->data());
                 $config['image_library'] = 'gd2';
                 $config['source_image'] = './assets/image/foto_program/'.$upload_data['uploads']['file_name'];
@@ -890,7 +856,6 @@ class Admin extends CI_Controller {
             $this->session->set_flashdata('pesan', 'Program berhasil diedit !');
             
             redirect('admin/pembelajaran');
-
         }
 
         $id_user = $this->session->userdata('id_user');
@@ -924,8 +889,7 @@ class Admin extends CI_Controller {
 
     /* Galeri */
 
-    public function galeri()
-    {
+    public function galeri() {
         $id_user = $this->session->userdata('id_user');
         $data = array(
             'user' => $this->m_user->detail($id_user),
@@ -956,8 +920,7 @@ class Admin extends CI_Controller {
                 );
                 $this->load->view('admin/layout/v_wrapper', $data, FALSE);
                 
-            }
-            else {
+            } else {
                 $upload_data = array('uploads' => $this->upload->data());
                 $config['image_library'] = 'gd2';
                 $config['source_image'] = './assets/image/sampul_galeri/'.$upload_data['uploads']['file_name'];
@@ -972,7 +935,6 @@ class Admin extends CI_Controller {
                 
                 redirect('admin/galeri');
             }
-
         }
 
         $id_user = $this->session->userdata('id_user');
@@ -1003,8 +965,7 @@ class Admin extends CI_Controller {
                 );
                 $this->load->view('admin/layout/v_wrapper', $data, FALSE);
                 
-            }
-            else {
+            } else {
                 $upload_data = array('uploads' => $this->upload->data());
                 $config['image_library'] = 'gd2';
                 $config['source_image'] = './assets/image/sampul_galeri/'.$upload_data['uploads']['file_name'];
@@ -1026,7 +987,6 @@ class Admin extends CI_Controller {
                 $this->session->set_flashdata('pesan', 'Galeri berhasil diedit !');
                 
                 redirect('admin/galeri');
-                
             }
 
             $data = array(
@@ -1037,7 +997,6 @@ class Admin extends CI_Controller {
             $this->session->set_flashdata('pesan', 'Galeri berhasil diedit !');
             
             redirect('admin/galeri');
-
         }
 
         $id_user = $this->session->userdata('id_user');
@@ -1087,8 +1046,7 @@ class Admin extends CI_Controller {
         redirect('admin/galeri');
     }
 
-    public function showgaleri($id_galeri)
-    {
+    public function showgaleri($id_galeri) {
         $id_user = $this->session->userdata('id_user');
         $data = array(
             'user' => $this->m_user->detail($id_user),
@@ -1123,9 +1081,8 @@ class Admin extends CI_Controller {
                 'isi' => 'admin/galeri/v_showgaleri'
             );
             $this->load->view('admin/layout/v_wrapper', $data, FALSE);
-            
-        }
-        else {
+
+        } else {
             $upload_data = array('uploads' => $this->upload->data());
             $config['image_library'] = 'gd2';
             $config['source_image'] = './assets/image/foto_galeri/'.$upload_data['uploads']['file_name'];
@@ -1139,9 +1096,7 @@ class Admin extends CI_Controller {
             $this->session->set_flashdata('pesan', 'Foto Galeri berhasil ditambahkan !');
             
             redirect('admin/galeri/detail-galeri/'.$id_galeri);
-            
         }
-
     }
 
     public function deletefoto($id_galeri, $id_foto) {
@@ -1182,9 +1137,8 @@ class Admin extends CI_Controller {
                 'isi' => 'admin/galeri/v_showgaleri'
             );
             $this->load->view('admin/layout/v_wrapper', $data, FALSE);
-            
-        }
-        else {
+
+        } else {
             $upload_data = array('uploads' => $this->upload->data());
             $config['image_library'] = 'gd2';
             $config['source_image'] = './assets/video/video_galeri/'.$upload_data['uploads']['file_name'];
@@ -1198,9 +1152,7 @@ class Admin extends CI_Controller {
             $this->session->set_flashdata('pesan', 'Video Galeri berhasil ditambahkan !');
             
             redirect('admin/galeri/detail-galeri/'.$id_galeri);
-            
         }
-
     }
 
     public function deletevideo($id_galeri, $id_video) {
@@ -1224,8 +1176,7 @@ class Admin extends CI_Controller {
 
     /* Alumni */
 
-    public function alumni()
-    {
+    public function alumni()  {
         $id_user = $this->session->userdata('id_user');
         $data = array(
             'user' => $this->m_user->detail($id_user),
@@ -1239,8 +1190,7 @@ class Admin extends CI_Controller {
 
     /* Berita */
 
-    public function berita()
-    {
+    public function berita() {
         $id_user = $this->session->userdata('id_user');
         $data = array(
             'user' => $this->m_user->detail($id_user),
@@ -1271,8 +1221,7 @@ class Admin extends CI_Controller {
                 );
                 $this->load->view('admin/layout/v_wrapper', $data, FALSE);
                 
-            }
-            else {
+            } else {
                 $upload_data = array('uploads' => $this->upload->data());
                 $config['image_library'] = 'gd2';
                 $config['source_image'] = './assets/image/foto_berita/'.$upload_data['uploads']['file_name'];
@@ -1291,7 +1240,6 @@ class Admin extends CI_Controller {
                 
                 redirect('admin/berita');
             }
-
         }
 
         $id_user = $this->session->userdata('id_user');
@@ -1323,8 +1271,7 @@ class Admin extends CI_Controller {
                     'isi' => 'admin/berita/v_editberita'
                 );
                 $this->load->view('admin/layout/v_wrapper', $data, FALSE); 
-            }
-            else {
+            } else {
                 $upload_data = array('uploads' => $this->upload->data());
                 $config['image_library'] = 'gd2';
                 $config['source_image'] = './assets/image/foto_berita/'.$upload_data['uploads']['file_name'];
@@ -1398,8 +1345,7 @@ class Admin extends CI_Controller {
 
     /* Legalitas */
 
-    public function legalitas()
-    {
+    public function legalitas() {
         $id_user = $this->session->userdata('id_user');
         $data = array(
             'user' => $this->m_user->detail($id_user),
@@ -1410,8 +1356,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layout/v_wrapper', $data, FALSE);
     }
 
-    public function foto1_legalitas()
-    {
+    public function foto1_legalitas() {
         $config['upload_path'] = './assets/image/foto_legalitas/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['max_size'] = 4000;
@@ -1448,12 +1393,10 @@ class Admin extends CI_Controller {
             $this->session->set_flashdata('pesan', 'Foto berhasil Disimpan !');
             
             redirect('admin/legalitas');
-            
         }
     }
 
-    public function foto2_legalitas()
-    {
+    public function foto2_legalitas() {
         $config['upload_path'] = './assets/image/foto_legalitas/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['max_size'] = 4000;
@@ -1490,7 +1433,6 @@ class Admin extends CI_Controller {
             $this->session->set_flashdata('pesan', 'Foto berhasil Disimpan !');
             
             redirect('admin/legalitas');
-            
         }
     }
 
