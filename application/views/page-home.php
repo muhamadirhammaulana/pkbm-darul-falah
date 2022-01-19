@@ -101,7 +101,7 @@
 				<?php foreach ($latest_berita as $key => $value) { ?>
                     <div class="col mt-3">
                         <div class="card shadow-sm h-100">
-                            <img src="<?= base_url('assets/image/foto_berita/'.$value->gambar_berita) ?>" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Thumbnail">
+                            <img src="<?= base_url('assets/image/foto_berita/'.$value->foto_berita) ?>" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Thumbnail">
                             <div class="card-body d-flex flex-column">
                                 <?php
                                     $judul_berita = substr(strip_tags($value->judul_berita),0,40);
