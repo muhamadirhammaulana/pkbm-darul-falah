@@ -25,9 +25,10 @@
                 <p>
                     <a href="<?= base_url('/') ?>" class="btn btn-md btn-default" id="custom-green2"><i class="bi bi-arrow-left"></i> Kembali</a>
                 </p>
-                <h1 class="display-6 text-center">LEGALITAS PKBM</h1>
-                <img src="<?=base_url('assets/image/foto_legalitas/'.$legalitas->foto1_legalitas)?>" class="img-fluid mt-2" id="img-border" alt="NPSN">
-                <img src="<?=base_url('assets/image/foto_legalitas/'.$legalitas->foto2_legalitas)?>" class="img-fluid mt-5 mb-5" id="img-border" alt="Izin Operasional">
+                <h1 class="display-6 text-center mb-5">LEGALITAS PKBM</h1>
+                <?php foreach ($legalitas as $key => $value) { ?>
+                    <img src="<?=base_url('assets/image/foto_legalitas/'.$value->foto_legalitas)?>" class="img-fluid mb-5" id="img-border" alt="NPSN">
+                <?php } ?>
             </div>
         </main>
 

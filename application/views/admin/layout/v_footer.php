@@ -296,8 +296,8 @@
             $(function () {
                 $('.addberita').on('click', function(e) {
                     var judulberita = document.getElementById("judulberita").value;
-                    var gambarberita = document.getElementById("gambarberita").value;
-                    if($('.summernote').summernote('isEmpty') && judulberita != "" && gambarberita != "") {
+                    var fotoberita = document.getElementById("fotoberita").value;
+                    if($('.summernote').summernote('isEmpty') && judulberita != "" && fotoberita != "") {
                         toastr.warning("Masukkan Isi Berita !");
 
                         // cancel submit
@@ -349,8 +349,6 @@
                 $('.btnChange').click(function() {
                     $('.inputName').attr('readonly', false);
                     $('.inputUsername').attr('readonly', false);
-                    $('.inputPassword').attr('readonly', false);
-                    $('.typePassword').attr('disabled', false);
                     $('.btnChange').attr('hidden', true);
                     $('.btnSave').attr('hidden', false);
                     $('.btnCancel').attr('hidden', false);

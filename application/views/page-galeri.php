@@ -40,7 +40,7 @@
                             ?>
                             <img src="<?=base_url('assets/image/sampul_galeri/'.$image)?>" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Thumbnail">
                             <div class="card-body text-center">
-                                <a class="card-title text-decoration-none text-dark stretched-link" href="<?=base_url('/galeri/detail-galeri/'.$value->id_galeri)?>"><strong><?=$value->nama_galeri?></strong></a>
+                                <a class="card-title text-decoration-none text-dark stretched-link" href="<?=base_url('/galeri/detail-galeri/'.$value->id_galeri)?>"><?=$value->nama_galeri?></a>
                             </div>
                         </div>
                     </div>

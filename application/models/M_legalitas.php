@@ -4,10 +4,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_legalitas extends CI_Model {
 
-    public function detail() {
+    public function lists() {
         $this->db->select('*');
         $this->db->from('tbl_legalitas');
-        $this->db->where('id_legalitas', 1);
+        $this->db->order_by('id_legalitas', 'asc');
+        return $this->db->get()->result();
+    }
+
+    public function detail($id_legalitas) {
+        $this->db->select('*');
+        $this->db->from('tbl_legalitas');
+        $this->db->where('id_legalitas', $id_legalitas);
         return $this->db->get()->row();
     }
 

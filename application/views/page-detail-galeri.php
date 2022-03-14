@@ -25,13 +25,13 @@
                 <p>
                     <a href="<?=base_url('galeri')?>" class="btn btn-md btn-default" id="custom-green2"><i class="bi bi-arrow-left"></i> Kembali</a>
                 </p>
-                <h1 class="display-6 text-center">GALERI : <?=$nama_galeri->nama_galeri?></h1>
+                <h1 class="display-6 text-center mb-3">GALERI : <?=$nama_galeri->nama_galeri?></h1>
                 <!-- Galeri Foto -->
                 <h3 class="text-left">FOTO</h3>
                 <?php if ($jml_foto->jml_foto == 0) { ?>
                 <div class="text-center"><p>Tidak Ada Foto</p></div>
                 <?php } else { ?>
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-5">
                     <?php foreach ($detail_foto as $key => $value) { ?>
                     <div class="col mt-3">
                         <div class="card shadow-sm">
@@ -44,11 +44,11 @@
                 <!-- End Galeri Foto -->
 
                 <!-- Galeri Video -->
-                <h3 class="text-left mt-5">VIDEO</h3>
+                <h3 class="text-left">VIDEO</h3>
                 <?php if ($jml_video->jml_video == 0) { ?>
                 <div class="text-center"><p>Tidak Ada Video</p></div>
                 <?php } else { ?>
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-5">
                     <?php foreach ($detail_video as $key => $value) { ?>
                     <div class="col mt-3">
                         <div class="card shadow-sm">

@@ -75,14 +75,14 @@
 		<div class="container">
 
 			<!-- Card Program -->
-			<h1 class="display-6 text-center mb-5">SEGMEN PROGRAM</h1>
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+			<h1 class="display-6 text-center">SEGMEN PROGRAM</h1>
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-2">
 				<?php foreach ($program as $key => $value) { ?>
 				<div class="col mt-3">
 					<div class="card shadow-sm" style="height: 370px">
 						<img src="<?= base_url('assets/image/foto_program/'.$value->foto_program) ?>" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Thumbnail">
 						<div class="card-body">
-							<h1 style="font-weight: 400; font-size: 20px"><?=$value->nama_program?></h1>
+							<h1 style="font-weight: 500; font-size: 20px"><?=$value->nama_program?></h1>
 							<p class="card-text">
 								<?=$value->ket_program?>
 							</p>
@@ -96,7 +96,7 @@
 			<hr class="featurette-divider">
 
 			<!-- Card Informasi -->
-			<h1 class="display-6 text-center">SEGMEN INFORMASI</h1>
+			<h1 class="display-6 text-center mt-5">SEGMEN INFORMASI</h1>
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-2">
 				<?php foreach ($latest_berita as $key => $value) { ?>
                     <div class="col mt-3">

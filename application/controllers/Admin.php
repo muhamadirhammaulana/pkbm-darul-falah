@@ -474,24 +474,24 @@ class Admin extends CI_Controller {
         $data = array(
             'user' => $this->m_user->detail($id_user),
             'profil' => $this->m_profil->detail(),
-            'akreditasi' => $this->m_akreditasi->detail(),
+            'akreditasi' => $this->m_akreditasi->lists(),
             'isi' => 'admin/v_akreditasi'
         );
         $this->load->view('admin/layout/v_wrapper', $data, FALSE);
     }
 
-    public function foto1_akreditasi() {
+    public function foto_akreditasi($id_akreditasi) {
         $config['upload_path'] = './assets/image/foto_akreditasi/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['max_size'] = 2048;
         $this->upload->initialize($config);
-        if (!$this->upload->do_upload('foto1_akreditasi')) {
+        if (!$this->upload->do_upload('foto_akreditasi')) {
             $id_user = $this->session->userdata('id_user');
             $data = array(
                 'user' => $this->m_user->detail($id_user),
                 'profil' => $this->m_profil->detail(),
                 'error' => $this->upload->display_errors(),
-                'akreditasi' => $this->m_akreditasi->detail(),
+                'akreditasi' => $this->m_akreditasi->lists(),
                 'isi' => 'admin/v_akreditasi'
             );
             $this->load->view('admin/layout/v_wrapper', $data, FALSE);
@@ -503,56 +503,15 @@ class Admin extends CI_Controller {
             $this->load->library('image_lib', $config);
 
             // Menghapus file foto lama
-            $akreditasi=$this->m_akreditasi->detail();
-            if ($akreditasi->foto1_akreditasi != "") {
-                unlink('./assets/image/foto_akreditasi/'.$akreditasi->foto1_akreditasi);
+            $akreditasi=$this->m_akreditasi->detail($id_akreditasi);
+            if ($akreditasi->foto_akreditasi != "") {
+                unlink('./assets/image/foto_akreditasi/'.$akreditasi->foto_akreditasi);
             }
             // End menghapus file foto lama
 
             $data = array(
-                'id_akreditasi' => '1',
-                'foto1_akreditasi' => $upload_data['uploads']['file_name']
-            );
-            $this->m_akreditasi->save($data);
-            $this->session->set_flashdata('pesan', 'Foto berhasil Disimpan !');
-            
-            redirect('admin/akreditasi');
-            
-        }
-    }
-
-    public function foto2_akreditasi() {
-        $config['upload_path'] = './assets/image/foto_akreditasi/';
-        $config['allowed_types'] = 'gif|jpg|png|jpeg';
-        $config['max_size'] = 2048;
-        $this->upload->initialize($config);
-        if (!$this->upload->do_upload('foto2_akreditasi')) {
-            $id_user = $this->session->userdata('id_user');
-            $data = array(
-                'user' => $this->m_user->detail($id_user),
-                'profil' => $this->m_profil->detail(),
-                'error' => $this->upload->display_errors(),
-                'akreditasi' => $this->m_akreditasi->detail(),
-                'isi' => 'admin/v_akreditasi'
-            );
-            $this->load->view('admin/layout/v_wrapper', $data, FALSE);
-            
-        } else {
-            $upload_data = array('uploads' => $this->upload->data());
-            $config['image_library'] = 'gd2';
-            $config['source_image'] = './assets/image/foto_akreditasi/'.$upload_data['uploads']['file_name'];
-            $this->load->library('image_lib', $config);
-
-            // Menghapus file foto lama
-            $akreditasi=$this->m_akreditasi->detail();
-            if ($akreditasi->foto2_akreditasi != "") {
-                unlink('./assets/image/foto_akreditasi/'.$akreditasi->foto2_akreditasi);
-            }
-            // End menghapus file foto lama
-
-            $data = array(
-                'id_akreditasi' => '1',
-                'foto2_akreditasi' => $upload_data['uploads']['file_name']
+                'id_akreditasi' => $id_akreditasi,
+                'foto_akreditasi' => $upload_data['uploads']['file_name']
             );
             $this->m_akreditasi->save($data);
             $this->session->set_flashdata('pesan', 'Foto berhasil Disimpan !');
@@ -1048,17 +1007,28 @@ class Admin extends CI_Controller {
         redirect('admin/galeri');
     }
 
-    public function showgaleri($id_galeri) {
+    public function showfoto($id_galeri) {
         $id_user = $this->session->userdata('id_user');
         $data = array(
             'user' => $this->m_user->detail($id_user),
             'profil' => $this->m_profil->detail(),
             'galeri' => $this->m_galeri->detail($id_galeri),
             'foto' => $this->m_galeri->lists_foto($id_galeri),
-            'video' => $this->m_galeri->lists_video($id_galeri),
             'jml_foto' => $this->m_galeri->detail_jumlahfoto($id_galeri),
+            'isi' => 'admin/galeri/v_showfoto'
+        );
+        $this->load->view('admin/layout/v_wrapper', $data, FALSE);
+    }
+
+    public function showvideo($id_galeri) {
+        $id_user = $this->session->userdata('id_user');
+        $data = array(
+            'user' => $this->m_user->detail($id_user),
+            'profil' => $this->m_profil->detail(),
+            'galeri' => $this->m_galeri->detail($id_galeri),
+            'video' => $this->m_galeri->lists_video($id_galeri),
             'jml_video' => $this->m_galeri->detail_jumlahvideo($id_galeri),
-            'isi' => 'admin/galeri/v_showgaleri'
+            'isi' => 'admin/galeri/v_showvideo'
         );
         $this->load->view('admin/layout/v_wrapper', $data, FALSE);
     }
@@ -1077,10 +1047,8 @@ class Admin extends CI_Controller {
                 'error' => $this->upload->display_errors(),
                 'galeri' => $this->m_galeri->detail($id_galeri),
                 'foto' => $this->m_galeri->lists_foto($id_galeri),
-                'video' => $this->m_galeri->lists_video($id_galeri),
                 'jml_foto' => $this->m_galeri->detail_jumlahfoto($id_galeri),
-                'jml_video' => $this->m_galeri->detail_jumlahvideo($id_galeri),
-                'isi' => 'admin/galeri/v_showgaleri'
+                'isi' => 'admin/galeri/v_showfoto'
             );
             $this->load->view('admin/layout/v_wrapper', $data, FALSE);
 
@@ -1095,9 +1063,9 @@ class Admin extends CI_Controller {
                 'foto' => $upload_data['uploads']['file_name']
             );
             $this->m_galeri->add_foto($data);
-            $this->session->set_flashdata('pesan', 'Foto Galeri berhasil ditambahkan !');
+            $this->session->set_flashdata('pesan', 'Foto berhasil ditambahkan !');
             
-            redirect('admin/galeri/detail-galeri/'.$id_galeri);
+            redirect('admin/galeri/foto-galeri/'.$id_galeri);
         }
     }
 
@@ -1115,7 +1083,7 @@ class Admin extends CI_Controller {
         $this->m_galeri->delete_foto($data);
         $this->session->set_flashdata('pesan', 'Foto berhasil dihapus !');
                 
-        redirect('admin/galeri/detail-galeri/'.$id_galeri);
+        redirect('admin/galeri/foto-galeri/'.$id_galeri);
     }
 
     public function addvideo($id_galeri) {
@@ -1132,11 +1100,9 @@ class Admin extends CI_Controller {
                 'profil' => $this->m_profil->detail(),
                 'error' => $this->upload->display_errors(),
                 'galeri' => $this->m_galeri->detail($id_galeri),
-                'foto' => $this->m_galeri->lists_foto($id_galeri),
                 'video' => $this->m_galeri->lists_video($id_galeri),
-                'jml_foto' => $this->m_galeri->detail_jumlahfoto($id_galeri),
                 'jml_video' => $this->m_galeri->detail_jumlahvideo($id_galeri),
-                'isi' => 'admin/galeri/v_showgaleri'
+                'isi' => 'admin/galeri/v_showvideo'
             );
             $this->load->view('admin/layout/v_wrapper', $data, FALSE);
 
@@ -1151,9 +1117,9 @@ class Admin extends CI_Controller {
                 'video' => $upload_data['uploads']['file_name']
             );
             $this->m_galeri->add_video($data);
-            $this->session->set_flashdata('pesan', 'Video Galeri berhasil ditambahkan !');
+            $this->session->set_flashdata('pesan', 'Video berhasil ditambahkan !');
             
-            redirect('admin/galeri/detail-galeri/'.$id_galeri);
+            redirect('admin/galeri/video-galeri/'.$id_galeri);
         }
     }
 
@@ -1171,7 +1137,7 @@ class Admin extends CI_Controller {
         $this->m_galeri->delete_video($data);
         $this->session->set_flashdata('pesan', 'Video berhasil dihapus !');
                 
-        redirect('admin/galeri/detail-galeri/'.$id_galeri);
+        redirect('admin/galeri/video-galeri/'.$id_galeri);
     }
 
     /* End Galeri */
@@ -1352,24 +1318,24 @@ class Admin extends CI_Controller {
         $data = array(
             'user' => $this->m_user->detail($id_user),
             'profil' => $this->m_profil->detail(),
-            'legalitas' => $this->m_legalitas->detail(),
+            'legalitas' => $this->m_legalitas->lists(),
             'isi' => 'admin/v_legalitas'
         );
         $this->load->view('admin/layout/v_wrapper', $data, FALSE);
     }
 
-    public function foto1_legalitas() {
+    public function foto_legalitas($id_legalitas) {
         $config['upload_path'] = './assets/image/foto_legalitas/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['max_size'] = 4000;
         $this->upload->initialize($config);
-        if (!$this->upload->do_upload('foto1_legalitas')) {
+        if (!$this->upload->do_upload('foto_legalitas')) {
             $id_user = $this->session->userdata('id_user');
             $data = array(
                 'user' => $this->m_user->detail($id_user),
                 'profil' => $this->m_profil->detail(),
                 'error' => $this->upload->display_errors(),
-                'legalitas' => $this->m_legalitas->detail(),
+                'legalitas' => $this->m_legalitas->lists(),
                 'isi' => 'admin/v_legalitas'
             );
             $this->load->view('admin/layout/v_wrapper', $data, FALSE);
@@ -1381,15 +1347,15 @@ class Admin extends CI_Controller {
             $this->load->library('image_lib', $config);
 
             // Menghapus file foto lama
-            $legalitas=$this->m_legalitas->detail();
-            if ($legalitas->foto1_legalitas != "") {
-                unlink('./assets/image/foto_legalitas/'.$legalitas->foto1_legalitas);
+            $legalitas=$this->m_legalitas->detail($id_legalitas);
+            if ($legalitas->foto_legalitas != "") {
+                unlink('./assets/image/foto_legalitas/'.$legalitas->foto_legalitas);
             }
             // End menghapus file foto lama
 
             $data = array(
-                'id_legalitas' => '1',
-                'foto1_legalitas' => $upload_data['uploads']['file_name']
+                'id_legalitas' => $id_legalitas,
+                'foto_legalitas' => $upload_data['uploads']['file_name']
             );
             $this->m_legalitas->save($data);
             $this->session->set_flashdata('pesan', 'Foto berhasil Disimpan !');
@@ -1398,47 +1364,9 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function foto2_legalitas() {
-        $config['upload_path'] = './assets/image/foto_legalitas/';
-        $config['allowed_types'] = 'gif|jpg|png|jpeg';
-        $config['max_size'] = 4000;
-        $this->upload->initialize($config);
-        if (!$this->upload->do_upload('foto2_legalitas')) {
-            $id_user = $this->session->userdata('id_user');
-            $data = array(
-                'user' => $this->m_user->detail($id_user),
-                'profil' => $this->m_profil->detail(),
-                'error' => $this->upload->display_errors(),
-                'legalitas' => $this->m_legalitas->detail(),
-                'isi' => 'admin/v_legalitas'
-            );
-            $this->load->view('admin/layout/v_wrapper', $data, FALSE);
-            
-        } else {
-            $upload_data = array('uploads' => $this->upload->data());
-            $config['image_library'] = 'gd2';
-            $config['source_image'] = './assets/image/foto_legalitas/'.$upload_data['uploads']['file_name'];
-            $this->load->library('image_lib', $config);
+    
 
-            // Menghapus file foto lama
-            $legalitas=$this->m_legalitas->detail();
-            if ($legalitas->foto2_legalitas != "") {
-                unlink('./assets/image/foto_legalitas/'.$legalitas->foto2_legalitas);
-            }
-            // End menghapus file foto lama
-
-            $data = array(
-                'id_legalitas' => '1',
-                'foto2_legalitas' => $upload_data['uploads']['file_name']
-            );
-            $this->m_legalitas->save($data);
-            $this->session->set_flashdata('pesan', 'Foto berhasil Disimpan !');
-            
-            redirect('admin/legalitas');
-        }
-    }
-
-    /* End Akreditasi */
+    /* End Legalitas */
 
 }
 

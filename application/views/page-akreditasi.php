@@ -25,9 +25,10 @@
                 <p>
                     <a href="<?= base_url('/') ?>" class="btn btn-md btn-default" id="custom-green2"><i class="bi bi-arrow-left"></i> Kembali</a>
                 </p>
-                <h1 class="display-6 text-center">AKREDITASI PKBM</h1>
-                <img src="<?=base_url('assets/image/foto_akreditasi/'.$akreditasi->foto1_akreditasi)?>" class="img-fluid mt-2" id="img-border">
-                <img src="<?=base_url('assets/image/foto_akreditasi/'.$akreditasi->foto2_akreditasi)?>" class="img-fluid mt-5 mb-5" id="img-border" alt="Izin Operasional">
+                <h1 class="display-6 text-center mb-5">AKREDITASI PKBM</h1>
+                <?php foreach ($akreditasi as $key => $value) { ?>
+                    <img src="<?=base_url('assets/image/foto_akreditasi/'.$value->foto_akreditasi)?>" class="img-fluid mb-5" id="img-border">
+                <?php } ?>
             </div>
         </main>
 

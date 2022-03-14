@@ -7,8 +7,8 @@ class M_home extends CI_Model {
     public function akreditasi() {
         $this->db->select('*');
         $this->db->from('tbl_akreditasi');
-        $this->db->where('id_akreditasi', 1);
-        return $this->db->get()->row();
+        $this->db->order_by('id_akreditasi', 'asc');
+        return $this->db->get()->result();
     }
 
     public function visimisi() {
@@ -63,8 +63,8 @@ class M_home extends CI_Model {
     public function legalitas() {
         $this->db->select('*');
         $this->db->from('tbl_legalitas');
-        $this->db->where('id_legalitas', 1);
-        return $this->db->get()->row();
+        $this->db->order_by('id_legalitas', 'asc');
+        return $this->db->get()->result();
     }
 
     public function berita($limit, $start) {

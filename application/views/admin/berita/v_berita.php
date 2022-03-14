@@ -96,6 +96,9 @@
                 <div class="modal-dialog">
                     <div class="modal-content rounded-0">
                         <div class="modal-body text-center">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                             <?php echo form_open('admin/deleteberita/'.$value->id_berita); ?>
                             <i class="fas fa-exclamation-circle fa-5x text-warning"></i>
                             <br><br>

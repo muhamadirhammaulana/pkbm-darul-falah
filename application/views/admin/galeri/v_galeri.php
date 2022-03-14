@@ -39,7 +39,8 @@
                                 <th class="col-1">No.</th>
                                 <th>Nama Galeri</th>
                                 <th>Sampul Galeri</th>
-                                <th>Foto & Video</th>
+                                <th>Jumlah Foto</th>
+                                <th>Jumlah Video</th>
                                 <th class="col-2">Action</th>
                             </tr>
                             </thead>
@@ -59,11 +60,17 @@
                                     <img src="<?=base_url('assets/image/sampul_galeri/'.$image)?>" class="img-fluid img-thumbnail" width="150px">
                                 </td>
                                 <td>
-                                    <i class="fas fa-image mb-3">  <?= $jml_foto[$key]->jml_foto ?> Foto</i>
-                                    <i class="fas fa-video ml-2">  <?= $jml_video[$key]->jml_video ?> Video</i><br>
-                                    <a href="<?=base_url('admin/galeri/detail-galeri/'.$value->id_galeri)?>" class="btn btn-info btn-flat btn-sm">
-                                        <i class="fas fa-photo-video"></i>
-                                        Lihat
+                                    <p><?=$jml_foto[$key]->jml_foto?> Foto</p>
+                                    <a href="<?=base_url('admin/galeri/foto-galeri/'.$value->id_galeri)?>" class="btn btn-info btn-flat btn-sm">
+                                        <i class="fas fa-image"></i>
+                                        Lihat Foto
+                                    </a>
+                                </td>
+                                <td>
+                                <p><?=$jml_video[$key]->jml_video?> Video</p>
+                                    <a href="<?=base_url('admin/galeri/video-galeri/'.$value->id_galeri)?>" class="btn btn-info btn-flat btn-sm">
+                                        <i class="fas fa-video"></i>
+                                        Lihat Video
                                     </a>
                                 </td>
                                 <td>
@@ -101,6 +108,9 @@
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content rounded-0">
                         <div class="modal-body text-center">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                             <?php echo form_open_multipart('admin/deletegaleri/'.$value->id_galeri); ?>
                             <i class="fas fa-exclamation-circle fa-5x text-warning"></i>
                             <br><br>
