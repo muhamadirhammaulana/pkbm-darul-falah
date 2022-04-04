@@ -24,6 +24,21 @@
                     <div class="container-fluid">
                         <!-- Small boxes (Stat box) -->
                         <div class="row">
+                            <?php
+                                if($this->session->flashdata('login_user')) { ?>
+                                    <div class="col-lg-12 col-6">
+                                        <div class="alert bg-teal alert-dismissible">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                            <i class="icon fas fa-check"></i>
+                                            Selamat Datang, <?=$user->nama_user?>
+                                        </div>
+                                    </div>
+                                <?php }
+
+                                if(isset($_SESSION['login_user'])) {
+                                    unset($_SESSION['login_user']);
+                                }
+                            ?>
                             <div class="col-lg-3 col-6">
                                 <!-- small box -->
                                 <div class="small-box bg-info rounded-0">

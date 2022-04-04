@@ -40,7 +40,7 @@
                                 <th>Nama</th>
                                 <th>Foto</th>
                                 <th>Username</th>
-                                <th class="col-2">Action</th>
+                                <th class="col-2">Aksi</th>
                             </tr>
                             </thead>
                             <tbody class="bg-light">

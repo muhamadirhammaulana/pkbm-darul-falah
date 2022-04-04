@@ -44,10 +44,10 @@
                                                 <div class="card card-light rounded-0">
                                                     <div class="card-body">
                                                         <div class="form-group">
-                                                            <label for="exampleInputFile">Tambah Video <small class="text-muted">(format: mp4/mkv/3gp/avi/mov, ukuran maks: 20 MB)</small></label>
+                                                            <label for="exampleInputFile">Tambah Video <small class="text-muted">(format: mp4/3gp/avi/mov, ukuran maks: 20 MB)</small></label>
                                                             <div class="input-group">
                                                                 <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="video" accept=".mp4,.mkv,.3gp,.avi,.mov" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan File Video')" required>
+                                                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="video" accept=".mp4,.3gp,.avi,.mov" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan File Video')" required>
                                                                     <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
                                                                 </div>
                                                             </div>
@@ -67,6 +67,7 @@
                                                 <div class="card card-light h-100 rounded-0">
                                                     <div class="card-header rounded-0" style="background-color: #15BB59;">
                                                         <strong class="text-white">Daftar Video</strong>
+                                                        <span class="badge badge-light float-right"><?=$jml_video->jml_video?> Video</span>
                                                     </div>
                                                     <div class="card-body">
                                                         <?php if ($jml_video->jml_video == 0) { ?>
@@ -81,11 +82,11 @@
                                                                         <source src="<?=base_url('assets/video/video_galeri/'.$value->video)?>" type="video/mp4">
                                                                     </video>
                                                                     <div class="card-img-overlay">
+                                                                        <button type="button" class="btn btn-info btn-flat btn-sm" data-toggle="modal" data-target="#show<?=$value->id_video?>">
+                                                                            <i class="fas fa-search-plus"></i>
+                                                                        </button>
                                                                         <button type="button" class="btn btn-danger btn-flat btn-sm" data-toggle="modal" data-target="#delete<?=$value->id_video?>">
                                                                             <i class="fas fa-trash-alt"></i>
-                                                                        </button>
-                                                                        <button type="button" class="btn btn-primary btn-flat btn-sm" data-toggle="modal" data-target="#show<?=$value->id_video?>">
-                                                                            <i class="fas fa-search-plus"></i>
                                                                         </button>
                                                                     </div>
                                                                 </div>

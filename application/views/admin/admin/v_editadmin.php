@@ -89,13 +89,13 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1">Ganti Password <small class="text-muted">(min. 8 karakter)</small></label>
-                                                                <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan Password Baru" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan Password Baru')">
+                                                                <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan Password Baru" minlength="8">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1">Konfirmasi Password</label>
-                                                                <input type="password" class="form-control" name="konfirmasi_password" id="konfirmasipassword" placeholder="Masukkan Konfirmasi Password" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan Konfirmasi Password')">
+                                                                <input type="password" class="form-control" name="konfirmasi_password" id="konfirmasipassword" placeholder="Masukkan Konfirmasi Password" minlength="8">
                                                             </div>
                                                         </div>
                                                     </div>

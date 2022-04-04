@@ -39,9 +39,9 @@
                                 <th class="col-1">No.</th>
                                 <th>Nama Galeri</th>
                                 <th>Sampul Galeri</th>
-                                <th>Jumlah Foto</th>
-                                <th>Jumlah Video</th>
-                                <th class="col-2">Action</th>
+                                <th>Foto</th>
+                                <th>Video</th>
+                                <th class="col-2">Aksi</th>
                             </tr>
                             </thead>
                             <tbody class="bg-light">
@@ -60,17 +60,17 @@
                                     <img src="<?=base_url('assets/image/sampul_galeri/'.$image)?>" class="img-fluid img-thumbnail" width="150px">
                                 </td>
                                 <td>
-                                    <p><?=$jml_foto[$key]->jml_foto?> Foto</p>
-                                    <a href="<?=base_url('admin/galeri/foto-galeri/'.$value->id_galeri)?>" class="btn btn-info btn-flat btn-sm">
+                                    <a href="<?=base_url('admin/galeri/foto-galeri/'.$value->id_galeri)?>" class="btn btn-info btn-flat btn-sm position-relative">
                                         <i class="fas fa-image"></i>
-                                        Lihat Foto
+                                        Kelola Foto
+                                        <span class="badge position-absolute top-0 start-0 translate-middle bg-danger"><?=$jml_foto[$key]->jml_foto?></span>
                                     </a>
                                 </td>
                                 <td>
-                                <p><?=$jml_video[$key]->jml_video?> Video</p>
-                                    <a href="<?=base_url('admin/galeri/video-galeri/'.$value->id_galeri)?>" class="btn btn-info btn-flat btn-sm">
+                                    <a href="<?=base_url('admin/galeri/video-galeri/'.$value->id_galeri)?>" class="btn btn-info btn-flat btn-sm position-relative">
                                         <i class="fas fa-video"></i>
-                                        Lihat Video
+                                        Kelola Video
+                                        <span class="badge position-absolute top-0 start-0 translate-middle bg-danger"><?=$jml_video[$key]->jml_video?></span>
                                     </a>
                                 </td>
                                 <td>

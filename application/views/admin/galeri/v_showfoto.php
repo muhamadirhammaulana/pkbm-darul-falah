@@ -67,6 +67,7 @@
                                                 <div class="card card-light h-100 rounded-0">
                                                     <div class="card-header rounded-0" style="background-color: #15BB59;">
                                                         <strong class="text-white">Daftar Foto</strong>
+                                                        <span class="badge badge-light float-right"><?=$jml_foto->jml_foto?> Foto</span>
                                                     </div>
                                                     <div class="card-body">
                                                         <?php if ($jml_foto->jml_foto == 0) { ?>
@@ -79,10 +80,10 @@
                                                                 <div class="card card-light h-100 justify-content-center rounded-0">
                                                                     <img class="card-img-top img-fluid img-thumbnail" src="<?=base_url('assets/image/foto_galeri/'.$value->foto)?>" alt="">
                                                                     <div class="card-img-overlay">
+                                                                        <a class="btn btn-info btn-flat btn-sm" href="<?=base_url('assets/image/foto_galeri/'.$value->foto)?>" data-toggle="lightbox" data-gallery="gallery" data-max-width="700"><i class="fa fa-search-plus"></i></a>
                                                                         <button type="button" class="btn btn-danger btn-flat btn-sm" data-toggle="modal" data-target="#delete<?=$value->id_foto?>">
                                                                             <i class="fas fa-trash-alt"></i>
                                                                         </button>
-                                                                        <a class="btn btn-primary btn-flat btn-sm" href="<?=base_url('assets/image/foto_galeri/'.$value->foto)?>" data-toggle="lightbox" data-gallery="gallery" data-max-width="700"><i class="fa fa-search-plus"></i></a>
                                                                     </div>
                                                                 </div>
                                                             </div>

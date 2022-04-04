@@ -26,6 +26,7 @@ class User_login {
                 $this->ci->session->set_userdata('nama_user', $nama_user);
                 $this->ci->session->set_userdata('level', $level);
                 $this->ci->session->set_flashdata('login_sukses', 'Selamat Datang !<br><strong>'.$nama_user.'</strong>');
+                $this->ci->session->set_flashdata('login_user', 'Selamat Datang, <strong>'.$nama_user.'</strong>');
                 
                 redirect('admin');
 

@@ -69,7 +69,7 @@
                                                     <div class="form-group">
                                                         <label for="inputName" class="col-form-label">Nama</label>
                                                         <div class="">
-                                                            <input type="text" name="nama_user" class="form-control rounded-0 inputName" id="inputName" value="<?=$user->nama_user?>" placeholder="Nama" readonly>
+                                                            <input type="text" name="nama_user" class="form-control rounded-0 inputName" id="inputName" value="<?=$user->nama_user?>" placeholder="Nama" readonly oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan Nama')" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -77,7 +77,7 @@
                                                     <div class="form-group">
                                                         <label for="inputEmail" class="col-form-label">Username</label>
                                                         <div class="">
-                                                            <input type="text" name="username" class="form-control rounded-0 inputUsername" id="inputUsername" value="<?=$user->username?>" placeholder="Username" readonly>
+                                                            <input type="text" name="username" class="form-control rounded-0 inputUsername" id="inputUsername" value="<?=$user->username?>" placeholder="Username" readonly oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Masukkan Username')" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -104,9 +104,9 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group">
-                                                    <label for="inputName2" class="col-form-label">Password Baru</label>
+                                                    <label for="inputName2" class="col-form-label">Password Baru <small class="text-muted">(min. 8 karakter)</small></label>
                                                     <div class="input-group">
-                                                        <input type="password" name="password_baru" class="form-control rounded-0 inputPassword" id="inputPassword" value="" placeholder="Masukkan Password Baru">
+                                                        <input type="password" name="password_baru" class="form-control rounded-0 inputPassword" id="inputPassword" value="" minlength="8" placeholder="Password Baru" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -114,7 +114,7 @@
                                                 <div class="form-group">
                                                     <label for="inputName2" class="col-form-label">Konfirmasi Password Baru</label>
                                                     <div class="input-group">
-                                                        <input type="password" name="konfirmasi_password_baru" class="form-control rounded-0 inputPassword" id="inputPassword" value="" placeholder="Konfirmasi Password Baru">
+                                                        <input type="password" name="konfirmasi_password_baru" class="form-control rounded-0 inputPassword" id="inputPassword" value="" minlength="8" placeholder="Konfirmasi Password Baru" required>
                                                     </div>
                                                 </div>
                                             </div>

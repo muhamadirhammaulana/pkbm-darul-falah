@@ -33,7 +33,7 @@
                                                 <div class="col-md-6">
                                                     <img class="card-img-top img-fluid img-thumbnail mb-3" src="<?=base_url('assets/image/foto_akreditasi/'.$value->foto_akreditasi)?>" alt="">
                                                     <div class="card-img-overlay">
-                                                        <a class="btn btn-primary btn-flat btn-sm" href="<?=base_url('assets/image/foto_akreditasi/'.$value->foto_akreditasi)?>" data-toggle="lightbox" data-gallery="gallery" data-max-width="700"><i class="fa fa-search-plus"></i></a>
+                                                        <a class="btn btn-info btn-flat btn-sm" href="<?=base_url('assets/image/foto_akreditasi/'.$value->foto_akreditasi)?>" data-toggle="lightbox" data-gallery="gallery" data-max-width="700"><i class="fa fa-search-plus"></i></a>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 list-akreditasi<?=$value->id_akreditasi?>">

@@ -90,7 +90,10 @@
                 "ordering": true,
                 "info": true,
                 "autoWidth": false,
-                "responsive": true,
+                "responsive": false,
+                "initComplete": function (settings, json) {  
+                    $("#example2").wrap("<div style='overflow:auto; width:100%;position:relative;'></div>");            
+                },
                 });
             });
         </script>
@@ -288,6 +291,14 @@
 
                 if(isset($_SESSION['password_kurang'])) {
                     unset($_SESSION['password_kurang']);
+                }
+
+                if($this->session->flashdata('belum_konfirm')) { ?>
+                    toastr.error("<?php echo $this->session->flashdata('belum_konfirm'); ?>");
+                <?php }
+
+                if(isset($_SESSION['belum_konfirm'])) {
+                    unset($_SESSION['belum_konfirm']);
                 }
                 ?> 
             });

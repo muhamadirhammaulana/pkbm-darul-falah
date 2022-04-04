@@ -7,6 +7,7 @@ class M_admin extends CI_Model {
     public function lists() {
         $this->db->select('*');
         $this->db->from('tbl_user');
+        $this->db->where('level', 1);
         $this->db->order_by('id_user', 'asc');
         return $this->db->get()->result();
     }

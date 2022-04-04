@@ -48,16 +48,36 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('username', 'Username', 'required');
 
         if ($this->form_validation->run() == TRUE) {
-            $data = array(
-                'id_user' => $id_user,
-                'nama_user' => $this->input->post('nama_user'),
-                'username' => $this->input->post('username'),
-            );
-            $this->m_user->save($data);
-            $this->session->set_flashdata('pesan', 'Akun berhasil diupdate !');
-            
-            redirect('admin/user/'.$id_user);
-        }
+
+            $username=$this->input->post('username');
+            $user=$this->m_user->detail($id_user);
+            $curr_username=$user->username;
+
+            if($curr_username != $username) {
+                if ($this->m_admin->check_user_exist($username)) {
+                    $this->session->set_flashdata('register_gagal', 'Username sudah ada !');
+                    redirect('admin/user/'.$id_user);
+                } else {
+                    $data = array(
+                        'id_user' => $id_user,
+                        'nama_user' => $this->input->post('nama_user'),
+                        'username' => $this->input->post('username'),
+                    );
+                    $this->m_user->save($data);
+                    $this->session->set_flashdata('pesan', 'Akun berhasil diupdate !');
+                    redirect('admin/user/'.$id_user);
+                }
+            } else {
+                $data = array(
+                    'id_user' => $id_user,
+                    'nama_user' => $this->input->post('nama_user'),
+                    'username' => $this->input->post('username'),
+                );
+                $this->m_user->save($data);
+                $this->session->set_flashdata('pesan', 'Akun berhasil diupdate !');
+                redirect('admin/user/'.$id_user);
+            }
+        }  
     }
 
     public function change_password($id_user) {
@@ -290,7 +310,7 @@ class Admin extends CI_Controller {
                                 'id_user' => $id_user,
                                 'nama_user' => $this->input->post('nama_user'),
                                 'username' => $this->input->post('username'),
-                                'level' => '1',
+                                //'level' => '1',
                                 'foto_user' => $upload_data['uploads']['file_name']
                             );
                             $this->m_admin->edit($data);
@@ -302,20 +322,25 @@ class Admin extends CI_Controller {
                                 'nama_user' => $this->input->post('nama_user'),
                                 'username' => $this->input->post('username'),
                                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                                'level' => '1',
+                                //'level' => '1',
                                 'foto_user' => $upload_data['uploads']['file_name']
                             );
                             if (strlen($new_password) < 8 ) {
                                 $this->session->set_flashdata('password_kurang', 'Password minimal harus 8 karakter !');
                                 redirect('admin/data-admin/edit-admin/'.$id_user);
                             } else {
-                                if($new_password != $confirm_password) {
-                                    $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                                if ($confirm_password == "") {
+                                    $this->session->set_flashdata('belum_konfirm', 'Masukkan Konfirmasi Password !');
                                     redirect('admin/data-admin/edit-admin/'.$id_user);
                                 } else {
-                                    $this->m_admin->edit($data);
-                                    $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
-                                    redirect('admin/data-admin');
+                                    if($new_password != $confirm_password) {
+                                        $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                                        redirect('admin/data-admin/edit-admin/'.$id_user);
+                                    } else {
+                                        $this->m_admin->edit($data);
+                                        $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
+                                        redirect('admin/data-admin');
+                                    }
                                 }
                             }
                         }
@@ -326,7 +351,7 @@ class Admin extends CI_Controller {
                             'id_user' => $id_user,
                             'nama_user' => $this->input->post('nama_user'),
                             'username' => $this->input->post('username'),
-                            'level' => '1',
+                            //'level' => '1',
                             'foto_user' => $upload_data['uploads']['file_name']
                         );
                         $this->m_admin->edit($data);
@@ -338,20 +363,25 @@ class Admin extends CI_Controller {
                             'nama_user' => $this->input->post('nama_user'),
                             'username' => $this->input->post('username'),
                             'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                            'level' => '1',
+                            //'level' => '1',
                             'foto_user' => $upload_data['uploads']['file_name']
                         );
                         if (strlen($new_password) < 8 ) {
                             $this->session->set_flashdata('password_kurang', 'Password minimal harus 8 karakter !');
                             redirect('admin/data-admin/edit-admin/'.$id_user);
                         } else {
-                            if($new_password != $confirm_password) {
-                                $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                            if ($confirm_password == "") {
+                                $this->session->set_flashdata('belum_konfirm', 'Masukkan Konfirmasi Password !');
                                 redirect('admin/data-admin/edit-admin/'.$id_user);
                             } else {
-                                $this->m_admin->edit($data);
-                                $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
-                                redirect('admin/data-admin');
+                                if($new_password != $confirm_password) {
+                                    $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                                    redirect('admin/data-admin/edit-admin/'.$id_user);
+                                } else {
+                                    $this->m_admin->edit($data);
+                                    $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
+                                    redirect('admin/data-admin');
+                                }
                             }
                         }
                     }
@@ -375,7 +405,7 @@ class Admin extends CI_Controller {
                             'id_user' => $id_user,
                             'nama_user' => $this->input->post('nama_user'),
                             'username' => $this->input->post('username'),
-                            'level' => '1'
+                            //'level' => '1'
                         );
                         $this->m_admin->edit($data);
                         $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
@@ -386,19 +416,24 @@ class Admin extends CI_Controller {
                             'nama_user' => $this->input->post('nama_user'),
                             'username' => $this->input->post('username'),
                             'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                            'level' => '1'
+                            //'level' => '1'
                         );
                         if (strlen($new_password) < 8 ) {
                             $this->session->set_flashdata('password_kurang', 'Password minimal harus 8 karakter !');
                             redirect('admin/data-admin/edit-admin/'.$id_user);
                         } else {
-                            if($new_password != $confirm_password) {
-                                $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                            if ($confirm_password == "") {
+                                $this->session->set_flashdata('belum_konfirm', 'Masukkan Konfirmasi Password !');
                                 redirect('admin/data-admin/edit-admin/'.$id_user);
                             } else {
-                                $this->m_admin->edit($data);
-                                $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
-                                redirect('admin/data-admin');
+                                if($new_password != $confirm_password) {
+                                    $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                                    redirect('admin/data-admin/edit-admin/'.$id_user);
+                                } else {
+                                    $this->m_admin->edit($data);
+                                    $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
+                                    redirect('admin/data-admin');
+                                }
                             }
                         }
                     }
@@ -409,7 +444,7 @@ class Admin extends CI_Controller {
                         'id_user' => $id_user,
                         'nama_user' => $this->input->post('nama_user'),
                         'username' => $this->input->post('username'),
-                        'level' => '1'
+                        //'level' => '1'
                     );
                     $this->m_admin->edit($data);
                     $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
@@ -420,19 +455,24 @@ class Admin extends CI_Controller {
                         'nama_user' => $this->input->post('nama_user'),
                         'username' => $this->input->post('username'),
                         'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                        'level' => '1'
+                        //'level' => '1'
                     );
                     if (strlen($new_password) < 8 ) {
                         $this->session->set_flashdata('password_kurang', 'Password minimal harus 8 karakter !');
                         redirect('admin/data-admin/edit-admin/'.$id_user);
                     } else {
-                        if($new_password != $confirm_password) {
-                            $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                        if ($confirm_password == "") {
+                            $this->session->set_flashdata('belum_konfirm', 'Masukkan Konfirmasi Password !');
                             redirect('admin/data-admin/edit-admin/'.$id_user);
                         } else {
-                            $this->m_admin->edit($data);
-                            $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
-                            redirect('admin/data-admin');
+                            if($new_password != $confirm_password) {
+                                $this->session->set_flashdata('password_gagal', 'Password tidak cocok !');
+                                redirect('admin/data-admin/edit-admin/'.$id_user);
+                            } else {
+                                $this->m_admin->edit($data);
+                                $this->session->set_flashdata('pesan', 'Akun berhasil diedit !');
+                                redirect('admin/data-admin');
+                            }
                         }
                     }
                 }
@@ -1089,7 +1129,7 @@ class Admin extends CI_Controller {
     public function addvideo($id_galeri) {
  
         $config['upload_path'] = './assets/video/video_galeri/';
-        $config['allowed_types'] = 'mp4|mkv|3gp|avi|mov';
+        $config['allowed_types'] = 'mp4|3gp|avi|mov';
         $config['max_size'] = 20480;
         $this->upload->initialize($config);
 
